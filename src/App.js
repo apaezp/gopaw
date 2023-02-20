@@ -2,7 +2,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Navbar from "./components/Navbar";
 import ScrollToTop from './components/ScrollToTop';
 import SignUp from "./components/pages/SignUp";
-import SignIn from "./components/pages/SignIn";
+import Login from "./components/pages/Login";
 import Home from "./components/pages/Home";
 import NotFound from "./components/pages/NotFound";
 import Search from "./components/pages/Search";
@@ -21,7 +21,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="pages/SignUp" element={<SignUp />} />
-        <Route path="pages/SignIn" element={<SignIn />} />
+        <Route path="pages/Login" element={<Login />} />        
         <Route path="pages/Search" element={<Search />} />
         <Route path="pages/VetProfile/Home" element={<VetHome />} />
         <Route path="pages/OwnerProfile/Home" element={<OwnerHome />} />
