@@ -1,8 +1,12 @@
 import React from 'react';
 import './Footer.css';
 import { Button } from './Button';
-import { FaPaw } from 'react-icons/fa';
+import { FaPaw, FaTiktok} from 'react-icons/fa';
+import {AiOutlineInstagram, AiOutlineYoutube} from 'react-icons/ai';
+import {FiFacebook, FiTwitter} from 'react-icons/fi';
+
 import { Link } from 'react-router-dom';
+
 
 function Footer() {
   return (
@@ -67,7 +71,7 @@ function Footer() {
               target='_blank'
               aria-label='Facebook'
             >
-              <i className='fab fa-facebook-f' />
+              <FiFacebook />
             </Link>
             <Link
               className='social-icon-link instagram'
@@ -75,7 +79,7 @@ function Footer() {
               target='_blank'
               aria-label='Instagram'
             >
-              <i className='fab fa-instagram' />
+              <AiOutlineInstagram />
             </Link>
             <Link
               className='social-icon-link youtube'
@@ -83,23 +87,23 @@ function Footer() {
               target='_blank'
               aria-label='Youtube'
             >
-              <i className='fab fa-youtube' />
-            </Link>
-            <Link
-              className='social-icon-link twitter'
-              to='/'
-              target='_blank'
-              aria-label='Twitter'
-            >
-              <i className='fab fa-twitter' />
-            </Link>
+              <AiOutlineYoutube />
+            </Link>            
             <Link
               className='social-icon-link twitter'
               to='/'
               target='_blank'
               aria-label='LinkedIn'
             >
-              <i className='fab fa-linkedin' />
+              <FiTwitter />
+            </Link>
+            <Link
+              className='social-icon-link tiktok'
+              to='/'
+              target='_blank'
+              aria-label='TikTok'
+            >
+              <FaTiktok />
             </Link>
           </div>
         </div>
