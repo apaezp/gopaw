@@ -1,6 +1,7 @@
 import React from 'react';
 import './Footer.css';
 import { Button } from './Button';
+import { FaPaw } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 function Footer() {
@@ -8,10 +9,10 @@ function Footer() {
     <div className='footer-container'>
       <section className='footer-subscription'>
         <p className='footer-subscription-heading'>
-          Join TheOne newsletter to receive our lastest updates!
+          Suscribete a nuestro boletin GoPaw para recibir nuestros ultimas actualizaciones!
         </p>
         <p className='footer-subscription-text'>
-          You can unsubscribe at any time!
+          Puedes cancelar tu suscripcion en cualquier momento.
         </p>
         <div className='input-areas'>
           <form>
@@ -28,27 +29,21 @@ function Footer() {
       <div className='footer-links'>
         <div className='footer-link-wrapper'>
           <div className='footer-link-items'>
-            <h2>About Us</h2>
-            <Link to='/sign-up'>How it works</Link>          
+            <h2>Sobre nosotros</h2>
+            <Link to='/sign-up'>Como funciona</Link>          
             
-            <Link to='/'>Terms of Service</Link>
+            <Link to='/'>Terminos y condiciones</Link>
           </div>
           <div className='footer-link-items'>
-            <h2>Contact Us</h2>
-            <Link to='/'>Contact</Link>
-            <Link to='/'>Support</Link>
+            <h2>Contactanos</h2>
+            <Link to='/'>Contacto</Link>
+            <Link to='/'>Ayuda</Link>
             
           </div>
         </div>
-        <div className='footer-link-wrapper'>
+        <div className='footer-link-wrapper'>         
           <div className='footer-link-items'>
-            <h2>Videos</h2>
-            <Link to='/'>Submit Video</Link>
-            <Link to='/'>Episodes</Link>
-           
-          </div>
-          <div className='footer-link-items'>
-            <h2>Social Media</h2>
+            <h2>Redes Sociales</h2>
             <Link to='/'>Instagram</Link>
           
             <Link to='/'>Youtube</Link>
@@ -61,7 +56,7 @@ function Footer() {
           <div className='footer-logo'>
             <Link to='/' className='social-logo'>
               GoPaw
-              <i className="fa-solid fa-ring"></i>
+              <FaPaw />
             </Link>
           </div>
           <small className='website-rights'>We do not own any of the copyrights © 2023</small>
