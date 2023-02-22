@@ -8,9 +8,10 @@ import NotFound from "./components/pages/NotFound";
 import Search from "./components/pages/Search";
 import VetHome from "./components/pages/VetProfile/VetHome";
 import OwnerHome from "./components/pages/OwnerProfile/OwnerHome";
-
+import OwnerPublicProfile from "./components/pages/OwnerProfile/OwnerPublicProfile";
 
 import './App.css';
+import VetPublicProfile from "./components/pages/VetProfile/VetPublicProfile";
 
 function App() {
   return (
@@ -24,7 +25,9 @@ function App() {
         <Route path="pages/Login" element={<Login />} />        
         <Route path="pages/Search" element={<Search />} />
         <Route path="pages/VetProfile/Home" element={<VetHome />} />
+        <Route path="pages/VetProfile/VetPublicProfile" element={<VetPublicProfile />} />
         <Route path="pages/OwnerProfile/Home" element={<OwnerHome />} />
+        <Route path="pages/OwnerProfile/OwnerPublicProfile" element={<OwnerPublicProfile />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
