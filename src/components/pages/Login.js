@@ -8,7 +8,7 @@ function Login() {
     <>
     <div className="login-container">
       <video src={Video} autoPlay loop muted />
-      <div className="form">
+      <div className="form-login">
         <div className="form-body">
           <div className="email">
             <label className="form__label">Email</label>

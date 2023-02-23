@@ -17,7 +17,7 @@ body {
     align-items: center;
   }
   
-  .form {
+  .form-signup {
     display: flex;
     flex-direction: column;
     border-radius: 5px;

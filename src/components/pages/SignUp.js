@@ -56,7 +56,7 @@ export default function SignUp() {
         <div className="signup-container">
       <video src={Video} autoPlay loop muted />
 
-      <div className="form">
+      <div className="form-signup">
         <div className="form-body">
           <div className="username">
             <label className="form__label">Nombre </label>
