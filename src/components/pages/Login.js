@@ -1,6 +1,6 @@
 import React from "react";
 import "./Login.css"
-import Video from '../assets/video/signup.mp4';
+import Video from '../assets/video/login.mp4';
 import Footer from '../Footer'
 
 function Login() {
