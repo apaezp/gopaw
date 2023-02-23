@@ -5,7 +5,7 @@ import "./TopVetReviews.css";
 
 const TopVetReviews = () => {
   const [index, setIndex] = useState(0);
-  const { name, job, image, text } = people[index];
+  const { name, date, image, text } = people[index];
   const checkNumber = (number) => {
     if (number > people.length - 1) {
       return 0;
@@ -59,7 +59,7 @@ const TopVetReviews = () => {
         </span>
       </div>
       <h4 className="author">{name}</h4>
-      <p className="job">{job}</p>
+      <p className="job">{date}</p>
       <p className="info">{text}</p>
       <div className="button-container">
         <button className="prev-btn" onClick={prevPerson}>

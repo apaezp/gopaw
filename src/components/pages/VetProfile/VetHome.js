@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { Button } from '../../Button';
+import Search from '../Search'
 
 
 function VetHome() {
@@ -28,6 +29,7 @@ function VetHome() {
     <Link to='/pages/VetProfile/VetPublicProfile'>
           {button && <Button buttonStyle='btn--outline' onClick={click}>MOSTRAR PERFIL</Button>}
     </Link>
+    <Search />
     </>
   )
 }
