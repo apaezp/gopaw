@@ -52,7 +52,9 @@ const TopVetReviews = () => {
 
   return (
     <article className="review">
-      <div className="img-container">
+      <div> <h1> Reviews de Veterinarios</h1> 
+      </div>
+      <div className="img-container">        
         <img src={image} alt={name} className="person-img" />
         <span className="quote-icon">
           <FaQuoteRight />

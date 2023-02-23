@@ -45,15 +45,7 @@ function Footer() {
             
           </div>
         </div>
-        <div className='footer-link-wrapper'>         
-          <div className='footer-link-items'>
-            <h2>Redes Sociales</h2>
-            <Link to='/'>Instagram</Link>
-          
-            <Link to='/'>Youtube</Link>
-            
-          </div>
-        </div>
+       
       </div>
       <section className='social-media'>
         <div className='social-media-wrap'>
