@@ -24,9 +24,9 @@ function App() {
         <Route path="pages/SignUp" element={<SignUp />} />
         <Route path="pages/Login" element={<Login />} />        
         <Route path="pages/Search" element={<Search />} />
-        <Route path="pages/VetProfile/Home" element={<VetHome />} />
+        <Route path="pages/VetProfile/VetHome" element={<VetHome />} />
         <Route path="pages/VetProfile/VetPublicProfile" element={<VetPublicProfile />} />
-        <Route path="pages/OwnerProfile/Home" element={<OwnerHome />} />
+        <Route path="pages/OwnerProfile/OwnerHome" element={<OwnerHome />} />
         <Route path="pages/OwnerProfile/OwnerPublicProfile" element={<OwnerPublicProfile />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

@@ -47,7 +47,7 @@ function Navbar() {
             </li>
             <li className='nav-item'>
               <Link
-                to='/pages/VetProfile/Home'
+                to='/pages/VetProfile/VetHome'
                 className='nav-links'
                 onClick={click}
               >
@@ -56,7 +56,7 @@ function Navbar() {
             </li>
             <li className='nav-item'>
               <Link
-                to='/pages/OwnerProfile/Home'
+                to='/pages/OwnerProfile/OwnerHome'
                 className='nav-links'
                 onClick={click}
               >

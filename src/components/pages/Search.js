@@ -40,7 +40,6 @@ return (
         <GiMagnifyingGlass clasName="magnifying-glass-icon "/>{" "}
       </button>
     </div>
-
     {searchResults.map(item => (
       <div className='cardVeterinary' key={item.id}>
       <div className='imgCardVet'>
