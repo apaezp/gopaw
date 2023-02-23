@@ -10,7 +10,7 @@ body {
     z-index: -1;
   }
   
-  .signup-container {
+  .login-container {
     margin: 0px;
     padding: 0px;
     width: 100%;
@@ -28,13 +28,13 @@ body {
     height: 100%;
   }
   
-  /* .form-body {
+  .form-body {
     padding: 20px 10px;
-  } */
-/*   
+  }
+  
   .form-body > * {
     padding: 25px;
-  } */
+  }
   
   .form__label {
     width: 100%;
@@ -61,7 +61,7 @@ body {
   
   .btnSignUp {
     
-    color: rgb(136, 136, 136);
+    color: rgb(136 , 136 , 136 );
     border-radius: 5px;
     padding: 10px;
     border: none;
