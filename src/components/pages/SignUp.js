@@ -1,6 +1,7 @@
 import React from 'react';
 import "./SignUp.css";
 import Video from '../assets/video/signup.mp4';
+import Calendario from '../Calendar'
 
 
 export default function SignUp() {
@@ -36,7 +37,8 @@ export default function SignUp() {
               <button type="submit" className="btnSignUp" >Register</button>
               {/* onClick= {(prompt("Thank you!")) } */}
           </div>
-      </div>      
+      </div>
+      <Calendario/>      
         </div>
     )       
 }
