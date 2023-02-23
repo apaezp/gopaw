@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import "./SignUp.css";
 import Video from '../assets/video/signup.mp4';
-
+import Footer from '../Footer'
 
 
 export default function SignUp() {
@@ -130,6 +130,7 @@ export default function SignUp() {
           </button>
         </div>
       </div>
+      <Footer/>
     </div>
     )       
 }

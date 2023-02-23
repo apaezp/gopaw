@@ -1,9 +1,11 @@
 import React from "react";
 import "./Login.css"
 import Video from '../assets/video/signup.mp4';
+import Footer from '../Footer'
 
 function Login() {
   return (
+    <>
     <div className="login-container">
       <video src={Video} autoPlay loop muted />
       <div className="form">
@@ -30,6 +32,8 @@ function Login() {
         </div>
       </div>
     </div>
+    <Footer/>
+    </>
   );
 }
 
