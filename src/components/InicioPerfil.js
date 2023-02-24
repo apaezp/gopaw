@@ -7,11 +7,11 @@ export const InicioPerfil = () => {
         <div className="col-md-6">
             <h6>Acerca de mi</h6>
             <p>
-                Web Designer, UI/UX Engineer
+                Me encanta matar zombies al lado de una cabra chica que me cae mal
             </p>
             <h6>Hobbies</h6>
             <p>
-                Indie music, skiing and hiking. I love the great outdoors.
+                Matar Zombies
             </p>
         </div>
         <div className="col-md-6">

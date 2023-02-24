@@ -10,34 +10,36 @@ export const PerfilCitas = () => {
      <i className="icon-info"></i>
     </div>
     <div className="alert-message">
-      <span><strong>Info!</strong> Lorem Ipsum is simply dummy text.</span>
+      <span><strong>Revisa tu historial de citas</strong> </span>
     </div>
   </div>
     <table className="table table-hover table-striped">
         <tbody>                                    
             <tr>
                 <td>
-                   <span className="float-right font-weight-bold">3 hrs ago</span> Here is your a link to the latest summary report from the..
+                   <span className="float-right font-weight-bold pl-3">Fecha: 28.02.23</span> 
+                   <button type="button" className="btn btn-danger float-right" >Cancelar</button>
+                   <button type="button" className="btn btn-success float-right" >Aceptar</button>
+                   <p>Dueño: Andrés Muñoz</p>
+                   <p>Mascota: Zeus</p>
                 </td>
             </tr>
             <tr>
                 <td>
-                   <span className="float-right font-weight-bold">Yesterday</span> There has been a request on your account since that was..
+                   <span className="float-right font-weight-bold pl-3">Fecha: 25.03.23</span> 
+                   <button type="button" className="btn btn-danger float-right" >Cancelar</button>
+                   <button type="button" className="btn btn-success float-right" >Aceptar</button>
+                   <p>Dueño: Matías Briceño</p>
+                   <p>Mascota: Odin</p>
                 </td>
             </tr>
             <tr>
                 <td>
-                   <span className="float-right font-weight-bold">9/10</span> Porttitor vitae ultrices quis, dapibus id dolor. Morbi venenatis lacinia rhoncus. 
-                </td>
-            </tr>
-            <tr>
-                <td>
-                   <span className="float-right font-weight-bold">9/4</span> Vestibulum tincidunt ullamcorper eros eget luctus. 
-                </td>
-            </tr>
-            <tr>
-                <td>
-                   <span className="float-right font-weight-bold">9/4</span> Maxamillion ais the fix for tibulum tincidunt ullamcorper eros. 
+                   <span className="float-right font-weight-bold pl-3">Fecha: 29.03.23</span> 
+                   <button type="button" className="btn btn-danger float-right" >Cancelar</button>
+                   <button type="button" className="btn btn-success float-right" >Aceptar</button>
+                   <p>Dueño: Andrea Paez</p>
+                   <p>Mascota: Charmander</p>
                 </td>
             </tr>
         </tbody> 

@@ -3,6 +3,7 @@ import {  ModificarPerfil } from "../../ModificarPerfil";
 import { InicioPerfil } from "../../InicioPerfil";
 import { PerfilCitas } from "../../PerfilCitas";
 import "./vetpublicprofile.css";
+import { PerfilReseña } from "../../PerfilReseña";
 
 function VetPublicProfile() {
   const [activeButton, setActiveButton] = useState('Inicio');
@@ -108,7 +109,7 @@ function VetPublicProfile() {
                   <button
                     type="button"
                     class="btn btn-primary"
-                    onClick={() => setActiveButton('Citas')}
+                    onClick={() => setActiveButton('Reseña')}
                   >
                     Reseñas <span className="hidden-xs"></span>
                   </button>
@@ -132,9 +133,9 @@ function VetPublicProfile() {
                     <PerfilCitas/>
                 </div>
                 }
-                {activeButton === 'Reseñas' && 
+                {activeButton === 'Reseña' && 
                 <div>
-                    <PerfilCitas/>
+                    <PerfilReseña/>
                 </div>
                 }
                 {activeButton === 'Contrasena' &&
