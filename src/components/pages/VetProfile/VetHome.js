@@ -26,9 +26,9 @@ function VetHome() {
   window.addEventListener('resize', showButton);
   return (
     <>
-    <div>VetHome</div>
-    <Link to='/pages/VetProfile/VetPublicProfile'>
-          {button && <Button buttonStyle='btn--outline' onClick={click}>MOSTRAR PERFIL</Button>}
+    <div >VetHome</div>
+    <Link to='/pages/VetProfile/VetPublicProfile' >
+          {button && <button type="button" className="btn btn-dark" onClick={click}>Ver perfil</button>}
     </Link>
 
     <Search /> 
