@@ -1,7 +1,7 @@
 .ownerHomeContainer{
     background-image: url("../../assets/img/pets-banner.webp");
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
     background-position: center;
     height: 70%;
     width: 100%;

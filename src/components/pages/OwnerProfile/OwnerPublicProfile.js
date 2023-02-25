@@ -3,7 +3,7 @@ import "./ownerpublicprofile.css";
 
 function OwnerPublicProfile() {
   return (
-    <div class="container">
+    <div class="containerOwnerPublicProfile">
       <div class="main-body">
         <div class="row gutters-sm">
           <div class="col-md-4 mb-3">
@@ -47,19 +47,19 @@ function OwnerPublicProfile() {
                   </div>
                   <div class="col-sm-9 text-secondary">(239) 816-9029</div>
                 </div>
-                <hr />
-                <div class="row">
+                {/* <hr /> */}
+                {/* <div class="row">
                   <div class="col-sm-3">
                     <h6 class="mb-0">Address</h6>
                   </div>
                   <div class="col-sm-9 text-secondary">
                     Bay Area, San Francisco, CA
                   </div>
-                </div>
+                </div> */}
                 
-                <div class="row">
+                {/* <div class="row">
                   <div class="col-sm-12"></div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

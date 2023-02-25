@@ -30,7 +30,7 @@ export const ModificarPerfil = () => {
       <form onSubmit={handleSubmit}>
         <div className="form-group row">
           <label className="col-lg-3 col-form-label form-control-label">
-            Nombres
+            Nombre
           </label>
           <div className="col-lg-9">
             <input
@@ -41,7 +41,7 @@ export const ModificarPerfil = () => {
             />
           </div>
         </div>
-        <div className="form-group row">
+        {/* <div className="form-group row">
           <label className="col-lg-3 col-form-label form-control-label">
             Apellidos
           </label>
@@ -53,7 +53,7 @@ export const ModificarPerfil = () => {
               onChange={handleChange}
             />
           </div>
-        </div>
+        </div> */}
         <div className="form-group row">
           <label className="col-lg-3 col-form-label form-control-label">
             Email
@@ -68,6 +68,19 @@ export const ModificarPerfil = () => {
           </div>
         </div>
         <div className="form-group row">
+          <label className="col-lg-3 col-form-label form-control-label">
+            Teléfono
+          </label>
+          <div className="col-lg-9">
+            <input
+              className="form-control"
+              type="text"
+              onChange={handleChange}
+              name="telefono"
+            />
+          </div>
+        </div>
+        {/* <div className="form-group row">
           <label className="col-lg-3 col-form-label form-control-label row-lg-3">
             Acerca de mi
           </label>
@@ -79,7 +92,7 @@ export const ModificarPerfil = () => {
               onChange={handleChange}
             />
           </div>
-        </div>
+        </div> */}
         <div className="form-group row">
           <label className="col-lg-3 col-form-label form-control-label">
             Cambiar imagen
@@ -94,7 +107,7 @@ export const ModificarPerfil = () => {
           </div>
         </div>
 
-        <div className="form-group row">
+        {/* <div className="form-group row">
           <label className="col-lg-3 col-form-label form-control-label">
             Dirección
           </label>
@@ -107,8 +120,8 @@ export const ModificarPerfil = () => {
               ceholder="Calle"
             />
           </div>
-        </div>
-        <div className="form-group row">
+        </div> */}
+        {/* <div className="form-group row">
           <label className="col-lg-3 col-form-label form-control-label"></label>
           <div className="col-lg-6">
             <input
@@ -128,7 +141,7 @@ export const ModificarPerfil = () => {
               placeholder="Estado"
             />
           </div>
-        </div>
+        </div> */}
         <div className="form-group row">
           <label className="col-lg-3 col-form-label form-control-label">
             Contraseña

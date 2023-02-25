@@ -1,15 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
-import { Button } from '../../Button';
-import Search from '../Search'
-import Footer from "../../Footer.js"
-
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { Button } from "../../Button";
+import Search from "../Search";
+import Footer from "../../Footer.js";
+import './vetHome.css'
 
 function VetHome() {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
-
-
 
   const showButton = () => {
     if (window.innerWidth <= 960) {
@@ -23,18 +21,22 @@ function VetHome() {
     showButton();
   }, []);
 
-  window.addEventListener('resize', showButton);
+  window.addEventListener("resize", showButton);
   return (
     <>
-    <div >VetHome</div>
-    <Link to='/pages/VetProfile/VetPublicProfile' >
-          {button && <button type="button" className="btn btn-dark" onClick={click}>Ver perfil</button>}
-    </Link>
-
-    <Search /> 
-    <Footer />
+      <div className="vetHomeContainer">
+        <Link to="/pages/VetProfile/VetPublicProfile">
+          {button && (
+            <button type="button" className="btn btn-dark" onClick={click}>
+              Ver perfil
+            </button>
+          )}
+        </Link>
+      </div>
+      <Search />
+      <Footer />
     </>
-  )
+  );
 }
 
-export default VetHome
+export default VetHome;

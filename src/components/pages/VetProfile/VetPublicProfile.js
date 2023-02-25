@@ -23,7 +23,7 @@ function VetPublicProfile() {
                   />
                 </div>
                 <h5 className="mb-1 text-white">Pedro Pascal</h5>
-                <h6 className="text-light">Zombie Killer</h6>
+                {/* <h6 className="text-light">Zombie Killer</h6> */}
               </div>
               <div className="card-body">
                 <ul className="list-group shadow-none">
@@ -45,7 +45,7 @@ function VetPublicProfile() {
                       <small>Email</small>
                     </div>
                   </li>
-                  <li className="list-group-item">
+                  {/* <li className="list-group-item">
                     <div className="list-icon">
                       <i className="fa fa-globe"></i>
                     </div>
@@ -53,7 +53,7 @@ function VetPublicProfile() {
                       <span>www.example.com</span>
                       <small>Website Address</small>
                     </div>
-                  </li>
+                  </li> */}
                 </ul>
                 <div className="row text-center mt-4">
                   <div className="col p-2">
@@ -66,7 +66,7 @@ function VetPublicProfile() {
                   </div>
                 </div>
               </div>
-              <div className="card-footer text-center">
+              {/* <div className="card-footer text-center">
                 <a className="btn-social btn-facebook waves-effect waves-light m-1">
                   <i className="fa fa-facebook"></i>
                 </a>
@@ -79,7 +79,7 @@ function VetPublicProfile() {
                 <a className="list-inline-item btn-social btn-dribbble waves-effect waves-light">
                   <i className="fa fa-dribbble"></i>
                 </a>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
@@ -87,7 +87,7 @@ function VetPublicProfile() {
           <div className="card z-depth-3">
             <div className="card-body">
               <ul className="nav nav-pills nav-pills-primary nav-justified">
-                <li className="nav-item">
+                {/* <li className="nav-item">
                   <button
                     type="button"
                     class="btn btn-primary"
@@ -95,7 +95,7 @@ function VetPublicProfile() {
                   >
                     Perfil <span className="hidden-xs"></span>
                   </button>
-                </li>
+                </li> */}
                 <li className="nav-item">
                   <button
                     type="button"
@@ -125,9 +125,9 @@ function VetPublicProfile() {
                 </li>
               </ul>
               <div className="tab-content p-3">
-                {activeButton === 'Inicio' &&
+                {/* {activeButton === 'Inicio' &&
                  <InicioPerfil />
-                 }
+                 } */}
                 {activeButton === 'Citas' && 
                 <div>
                     <PerfilCitas/>
