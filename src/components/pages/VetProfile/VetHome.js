@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
-import { Button } from '../../Button';
 import Search from '../Search'
 import Footer from "../../Footer.js"
+import TopVetReviews from "../../TopVetReviews"
+import "./VetHome.css"
 
 
 function VetHome() {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
-
-
 
   const showButton = () => {
     if (window.innerWidth <= 960) {
@@ -18,21 +17,25 @@ function VetHome() {
       setButton(true);
     }
   };
+ 
 
   useEffect(() => {
     showButton();
   }, []);
 
   window.addEventListener('resize', showButton);
+
+
   return (
     <>
-    <div >VetHome</div>
+    <div className='VetHomeContainer'> 
+
+    <Search />     
     <Link to='/pages/VetProfile/VetPublicProfile' >
           {button && <button type="button" className="btn btn-dark" onClick={click}>Ver perfil</button>}
     </Link>
-
-    <Search /> 
     <Footer />
+    </div>
     </>
   )
 }
