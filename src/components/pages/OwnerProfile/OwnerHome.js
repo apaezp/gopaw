@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
-import { Button } from '../../Button';
-
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { Button } from "../../Button";
+import "./OwnerHome.css";
+import Footer from "../../Footer";
 
 function OwnerHome() {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
-
-
 
   const showButton = () => {
     if (window.innerWidth <= 960) {
@@ -21,15 +20,27 @@ function OwnerHome() {
     showButton();
   }, []);
 
-  window.addEventListener('resize', showButton);
+  window.addEventListener("resize", showButton);
   return (
     <>
-    <div>OwnerHome</div>
-    <Link to='/pages/OwnerProfile/OwnerPublicProfile'>
-          {button && <Button buttonStyle='btn--outline' onClick={click}>MOSTRAR PERFIL</Button>}
-    </Link>
+    <div className="ownerHomeContainer">
+      <div className="ownerHomeButtons">
+        <Link to="/pages/OwnerProfile/OwnerPublicProfile">
+          <button className="buttonMostrarPerfil" onClick={click}>
+            Mostrar Perfil
+          </button>
+        </Link>
+        <Link to="/pages/Login">
+          <button className="buttonLogin" onClick={click}>
+            Login
+          </button>
+        </Link>
+      </div>
+     
+    </div>
+    <Footer />
     </>
-  )
+  );
 }
 
-export default OwnerHome
+export default OwnerHome;
