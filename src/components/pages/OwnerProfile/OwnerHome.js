@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Button } from "../../Button";
 import "./OwnerHome.css";
 import Footer from "../../Footer";
 

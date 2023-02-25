@@ -71,7 +71,7 @@ const TopVetReviews = () => {
           <FaChevronRight />
         </button>
       </div>
-      <button className="random-btn" onClick={getRandomPerson}>Get Random Review</button>
+      <button className="random-btn" onClick={getRandomPerson}>Más Reviews</button>
     </article>
   );
 };
