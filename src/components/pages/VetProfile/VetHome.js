@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import Search from "../Search";
 import Footer from "../../Footer.js";
-import "./VetHome.css";
+import "./vetHome.css";
 
 function VetHome() {
   const [click, setClick] = useState(false);
