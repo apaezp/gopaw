@@ -9,16 +9,18 @@ import Search from "./components/pages/Search";
 import VetHome from "./components/pages/VetProfile/VetHome";
 import OwnerHome from "./components/pages/OwnerProfile/OwnerHome";
 import OwnerPublicProfile from "./components/pages/OwnerProfile/OwnerPublicProfile";
+import {AuthProvider} from "./GlobalStates"
 
 import './App.css';
 import VetPublicProfile from "./components/pages/VetProfile/VetPublicProfile";
 
 function App() {
   return (
-   <>
+   <> 
+   <AuthProvider>
     <BrowserRouter>
     <ScrollToTop />
-    <Navbar />
+    <Navbar />    
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="pages/SignUp" element={<SignUp />} />
@@ -31,8 +33,8 @@ function App() {
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
-    </>
-    
+    </AuthProvider>
+    </>    
   );
 }
 
