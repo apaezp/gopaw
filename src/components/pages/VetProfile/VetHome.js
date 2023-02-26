@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Button } from "../../Button";
+
 import Search from "../Search";
 import Footer from "../../Footer.js";
-import './vetHome.css'
+import "./VetHome.css";
 
 function VetHome() {
   const [click, setClick] = useState(false);
@@ -16,7 +16,6 @@ function VetHome() {
       setButton(true);
     }
   };
- 
 
   useEffect(() => {
     showButton();
@@ -33,8 +32,9 @@ function VetHome() {
             </button>
           )}
         </Link>
+        <Search />
       </div>
-      <Search />
+
       <Footer />
     </>
   );
