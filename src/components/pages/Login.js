@@ -1,7 +1,9 @@
-import React, {useContext, useEffect} from "react";
+import React, {useState} from "react";
 import "./Login.css"
 import Video from '../assets/video/login.mp4';
 import Footer from '../Footer'
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 // import {AuthContext} from '../../GlobalStates'
 
 // const [authState,setauthState] = useContext(AuthContext);
@@ -66,6 +68,31 @@ import Footer from '../Footer'
 // };
 
 function Login() {
+  const navigate = useNavigate();
+  const [usuario, setUsuarioLocal] = useState({});
+
+  const handleSetUsuario = ({ target: { value, name } }) => {
+    const field = {};
+    field[name] = value;
+    setUsuarioLocal({ ...usuario, ...field });
+    console.log(usuario)
+  };
+
+  const iniciarSesion = async () => {
+    const urlServer = "https://backendgopaw-production.up.railway.app";
+    const endpoint = "/login";
+    const { email, password } = usuario;
+    try {
+      if (!email || !password) return alert("Email y password obligatorias");
+      const { data: token } = await axios.post(urlServer + endpoint, usuario);
+      alert("Usuario identificado con éxito 😀");
+      localStorage.setItem("token", token);
+      navigate("/");
+    } catch ({ response: { data: message } }) {
+      alert(message + " 🙁");
+      console.log(message);
+    }
+  };
   return (
     <>
     <div className="login-container">
@@ -75,22 +102,28 @@ function Login() {
           <div className="email">
             <label className="form__label">Email</label>
             <input
+              value={usuario.email}
+              onChange={handleSetUsuario}
               className="form__input"
-              type="text"
+              type="email"
+              name="email"
               placeholder="Email"
             ></input>
           </div>
           <div className="password">
             <label className="form__label">Contraseña</label>
             <input
+              value={usuario.password}
+              onChange={handleSetUsuario}
               className="form__input"
               type="password"
+              name="password"
               placeholder="Contraseña"
             ></input>
           </div>
         </div>
         <div className="footer">
-          <button type="submit" className="btnSignUp">Ingresar</button>
+          <button type="submit" className="btnSignUp" onClick={iniciarSesion}>Ingresar</button>
         </div>
       </div>
     </div>
