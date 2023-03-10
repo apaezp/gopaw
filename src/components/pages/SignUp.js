@@ -1,59 +1,125 @@
-import React, {useState} from 'react';
+import React, { useState } from "react";
+import axios from "axios";
 import "./SignUp.css";
-import Video from '../assets/video/signup.mp4';
-import Footer from '../Footer'
-
+import Video from "../assets/video/signup.mp4";
+import Footer from "../Footer";
 
 export default function SignUp() {
+  const [firstName, setFirstName] = useState(null);
+  const [lastName, setLastName] = useState(null);
+  const [email, setEmail] = useState(null);
+  const [phone, setPhone] = useState(null);
+  const [password, setPassword] = useState(null);
+  const [confirmPassword, setConfirmPassword] = useState(null);
+  const [image, setImage] = useState(null);
 
-    const [firstName, setFirstName] = useState(null);
-    const [lastName, setLastName] = useState(null);
-    const [email, setEmail] = useState(null);
-    const [phone, setPhone] = useState(null);
-    const [password, setPassword] = useState(null);
-    const [confirmPassword, setConfirmPassword] = useState(null);
-    const [type, setType] = useState("dueño")
-  
-    const handleInputChange = (e) => {
-      const {id , value} = e.target;
-          if(id === "firstName"){
-              setFirstName(value);
-          }
-          if(id === "lastName"){
-              setLastName(value);
-          }
-          if(id === "email"){
-              setEmail(value);
-          }
-          if(id === "phone"){
-              setPhone(value);
-          }
-          if(id === "password"){
-              setPassword(value);
-          }
-          if(id === "confirmPassword"){
-              setConfirmPassword(value);
-          }
-    };
-  
+  const [type, setType] = useState("dueño");
+
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    if (id === "firstName") {
+      setFirstName(value);
+    }
+    if (id === "lastName") {
+      setLastName(value);
+    }
+    if (id === "email") {
+      setEmail(value);
+    }
+    if (id === "phone") {
+      setPhone(value);
+    }
+    if (id === "password") {
+      setPassword(value);
+    }
+    if (id === "confirmPassword") {
+      setConfirmPassword(value);
+    }
+  };
+
+
+  // const loadImage = () => {
+
+  // }
+
+
   const changeType = () => {
-      setType("veterinario")
-  }
-  
+    if (type == "dueño") {
+      setType("veterinario");
+    } else {
+      setType("dueño");
+    }
+  };
+
+  const fullName = firstName + " " + lastName;
+
+  const validatePassword = () => {
+    if (password === confirmPassword) {
+      validateEmail();
+    } else {
+      alert("Password no coincide");
+    }
+  };
+
+  const validateEmail = () => {
+    const validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+    if (validEmail.test(email)) {
+      register();
+    } else {
+      alert("Email invalido");
+    }
+  };
+
   const register = () => {
-      if(type === "dueño"){
-          //Se ejecuta consulta que ingresa nuevo dueño
-      }else{
-          //se ejecuta consulta que ingresa nuevo veterinario
-      }
-  }
-  
-  
-    console.log(firstName, lastName, email, phone, password, confirmPassword, type)
+    if (type === "dueño") {
+      const data = {
+        owner_name: fullName,
+        phone: phone,
+        email: email,
+        image: image,
+        password: password,
+      };
 
+      axios
+        .post(
+          "https://backendgopaw-production.up.railway.app/registerowner",
+          data
+        )
+        .then(() => {
+          alert("Registro de dueño exitoso");
+        })
+        .catch((error) => {
+          alert(error);
+        });
+      // console.log(data);
+    } else {
+      const data = {
+        veterinary_name: fullName,
+        phone: phone,
+        email: email,
+        image: image,
+        password: password,
+      };
+      axios
+        .post(
+          "https://backendgopaw-production.up.railway.app/registervet",
+          data
+        )
+        .then(() => {
+          alert("Registro de veterinario exitoso");
+        })
+        .catch((error) => {
+          alert(error);
+        });
+      // console.log(data);
+      //se ejecuta consulta que ingresa nuevo veterinario
+    }
+  };
 
-    return(
-        <div className="signup-container">
+  // console.log(firstName, lastName, email, phone, password, confirmPassword, type)
+
+  return (
+    <div className="signup-container">
       <video src={Video} autoPlay loop muted />
 
       <div className="form-signup">
@@ -65,7 +131,7 @@ export default function SignUp() {
               type="text"
               id="firstName"
               placeholder="Nombre"
-              onChange = {(e) => handleInputChange(e)}
+              onChange={(e) => handleInputChange(e)}
             />
           </div>
           <div className="lastname">
@@ -76,7 +142,7 @@ export default function SignUp() {
               id="lastName"
               className="form__input"
               placeholder="Apellido"
-              onChange = {(e) => handleInputChange(e)}
+              onChange={(e) => handleInputChange(e)}
             />
           </div>
           <div className="email">
@@ -86,7 +152,7 @@ export default function SignUp() {
               type="email"
               id="email"
               placeholder="Email"
-              onChange = {(e) => handleInputChange(e)}
+              onChange={(e) => handleInputChange(e)}
             />
           </div>
           <div className="phone">
@@ -96,7 +162,7 @@ export default function SignUp() {
               type="text"
               id="phone"
               placeholder="Teléfono"
-              onChange = {(e) => handleInputChange(e)}
+              onChange={(e) => handleInputChange(e)}
             />
           </div>
           <div className="password">
@@ -106,7 +172,7 @@ export default function SignUp() {
               type="password"
               id="password"
               placeholder="Contraseña"
-              onChange = {(e) => handleInputChange(e)}
+              onChange={(e) => handleInputChange(e)}
             />
           </div>
           <div className="confirm-password">
@@ -116,21 +182,39 @@ export default function SignUp() {
               type="password"
               id="confirmPassword"
               placeholder="Confirmar Contraseña"
-              onChange = {(e) => handleInputChange(e)}
+              onChange={(e) => handleInputChange(e)}
             />
           </div>
+          {/* <div className="profile-pic">
+            <label className="form__label">Imagen de perfil </label>
+            <input
+              className="form__input"
+              type="file"
+              id="image"
+              placeholder="Seleccionar archivo"
+              // onChange={(e) => loadImage(e)}
+            />
+          </div> */}
         </div>
         <div className="footer">
-          <button type="submit" className="btnSignUp" onClick={() => register()}>
-            Registrarse como dueño de mascota.
-          </button> 
+          <button
+            type="submit"
+            className="btnSignUp"
+            onClick={() => validatePassword()}
+          >
+            Registrarse.
+          </button>
           <p></p>
-          <button type="button" className="btnSignUp" onClick={() => changeType()}>
-            Registrarse como veterinario.
+          <button
+            type="button"
+            className="btnSignUp"
+            onClick={() => changeType()}
+          >
+            Tipo de cuenta: {type}
           </button>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
-    )       
+  );
 }

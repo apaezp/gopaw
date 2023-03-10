@@ -34,7 +34,7 @@ function VetHome() {
         </Link>
         <Search />
       </div>
-
+      
       <Footer />
     </>
   );
