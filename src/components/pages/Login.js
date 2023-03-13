@@ -75,18 +75,20 @@ function Login() {
     const field = {};
     field[name] = value;
     setUsuarioLocal({ ...usuario, ...field });
-    console.log(usuario)
+
   };
 
   const iniciarSesion = async () => {
-    const urlServer = "https://backendgopaw-production.up.railway.app";
+    const urlServer = "http://localhost:8080";
     const endpoint = "/login";
     const { email, password } = usuario;
     try {
       if (!email || !password) return alert("Email y password obligatorias");
-      const { data: token } = await axios.post(urlServer + endpoint, usuario);
+      const {data} = await axios.post(urlServer + endpoint, usuario);
+      const {token, id} = data
       alert("Usuario identificado con éxito 😀");
       localStorage.setItem("token", token);
+      localStorage.setItem("idVet", id);
       navigate("/");
     } catch ({ response: { data: message } }) {
       alert(message + " 🙁");

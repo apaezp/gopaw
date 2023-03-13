@@ -1,14 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {  ModificarPerfil } from "../../ModificarPerfil";
-import { InicioPerfil } from "../../InicioPerfil";
 import { PerfilCitas } from "../../PerfilCitas";
 import "./vetpublicprofile.css";
 import { PerfilReseña } from "../../PerfilReseña";
-
+import axios from "axios";
 function VetPublicProfile() {
   const [activeButton, setActiveButton] = useState('Inicio');
-
-
+  const [vet, setVet] = useState({})
+  const viewProfile = async () => {
+    const id = localStorage.getItem("idVet");
+    const urlServer = "http://localhost:8080";
+    const endpoint = `/veterinary/${id}`;
+    try {
+      const { data } = await axios.get(urlServer + endpoint, { params: { id } });
+      const vetData = data[0];
+      setVet(vetData);      
+    } catch ({ response: { data: message } }) {
+      alert(message + " 🙁");
+      console.log(message);
+    }
+  };
+  useEffect(() => {
+    viewProfile();
+  }, [])
+  
   return (
     <div className="container mt-3">
       <div className="row">
@@ -22,7 +37,7 @@ function VetPublicProfile() {
                     alt="user avatar"
                   />
                 </div>
-                <h5 className="mb-1 text-white">Pedro Pascal</h5>
+                <h5 className="mb-1 text-white">{vet.veterinary_name}</h5>
                 {/* <h6 className="text-light">Zombie Killer</h6> */}
               </div>
               <div className="card-body">
@@ -32,7 +47,7 @@ function VetPublicProfile() {
                       <i className="fa fa-phone-square"></i>
                     </div>
                     <div className="list-details">
-                      <span>9910XXXXXX</span>
+                      <span>{vet.phone}</span>
                       <small>Celular</small>
                     </div>
                   </li>
@@ -41,7 +56,7 @@ function VetPublicProfile() {
                       <i className="fa fa-envelope"></i>
                     </div>
                     <div className="list-details">
-                      <span>info@example.com</span>
+                      <span>{vet.email}</span>
                       <small>Email</small>
                     </div>
                   </li>

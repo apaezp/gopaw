@@ -44,7 +44,7 @@ export default function SignUp() {
 
 
   const changeType = () => {
-    if (type == "dueño") {
+    if (type === "dueño") {
       setType("veterinario");
     } else {
       setType("dueño");

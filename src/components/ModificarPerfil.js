@@ -1,15 +1,13 @@
 import React, { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 export const ModificarPerfil = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    nombres: "",
-    apellidos: "",
+    nombre: "",
     email: "",
-    cambiarPerfil: "",
-    direccion: "",
-    ciudad: "",
-    estado: "",
-    acercaDeMi: "",
+    telefono: "",
+    cambiarFoto: "",
   });
 
   const handleChange = (e) => {
@@ -17,20 +15,40 @@ export const ModificarPerfil = () => {
     setFormData((prev) => {
       return { ...prev, [name]: value };
     });
-    console.log(formData);
+    // console.log(formData);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    // console.log(formData);
   };
-
+  const changeProfile = async () => {
+    const id = localStorage.getItem("idVet");
+    // const token = localStorage.getItem("token");
+    const urlServer = "http://localhost:8080";
+    const endpoint = `/editveterinary/:${id}`;
+    const { nombre, telefono, email  } = formData;
+    const newVetData = {id, nombre, telefono, email }
+    try {
+      // const responseToken = await axios.put(urlServer + endpoint, {
+      //   headers: { Authorization: "Bearer " + token },
+      // });
+      const response = await axios.put(urlServer + endpoint, newVetData);
+      console.log(response)
+      
+      alert("Usuario modificado exitosamente😀");
+    } catch ({ response: { data: message } }) {
+      alert(message + " 🙁");
+      console.log(message);
+    }
+    
+  };
   return (
     <div className="tab-pane" id="edit">
       <form onSubmit={handleSubmit}>
         <div className="form-group row">
           <label className="col-lg-3 col-form-label form-control-label">
-            Nombre
+            Nombre Completo
           </label>
           <div className="col-lg-9">
             <input
@@ -95,14 +113,14 @@ export const ModificarPerfil = () => {
         </div> */}
         <div className="form-group row">
           <label className="col-lg-3 col-form-label form-control-label">
-            Cambiar imagen
+            Cambiar Foto
           </label>
           <div className="col-lg-9">
             <input
               className="form-control"
               type="file"
               onChange={handleChange}
-              name="cambiarPerfil"
+              name="cambiarFoto"
             />
           </div>
         </div>
@@ -167,7 +185,7 @@ export const ModificarPerfil = () => {
           </div>
         </div>
         <div className="form-group row">
-          <button type="button" class="btn btn-primary ml-4">
+          <button type="button" class="btn btn-primary ml-4" onClick={changeProfile}>
             Guardar Cambios <span className="hidden-xs"></span>
           </button>
         </div>
