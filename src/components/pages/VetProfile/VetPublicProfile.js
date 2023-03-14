@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {  ModificarPerfil } from "../../ModificarPerfil";
 import { PerfilCitas } from "../../PerfilCitas";
-import "./vetpublicprofile.css";
+import "./VetPublicProfile.css";
 import { PerfilReseña } from "../../PerfilReseña";
 import axios from "axios";
 function VetPublicProfile() {

@@ -1,5 +1,5 @@
 import React from "react";
-import "./ownerpublicprofile.css";
+import "./OwnerPublicProfile.css";
 
 function OwnerPublicProfile() {
   return (

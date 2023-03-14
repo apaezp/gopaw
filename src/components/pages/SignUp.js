@@ -13,7 +13,7 @@ export default function SignUp() {
   const [confirmPassword, setConfirmPassword] = useState(null);
   const [image, setImage] = useState(null);
 
-  const [type, setType] = useState("dueño");
+  const [type, setType] = useState("owner");
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
@@ -38,16 +38,13 @@ export default function SignUp() {
   };
 
 
-  // const loadImage = () => {
-
-  // }
 
 
   const changeType = () => {
-    if (type === "dueño") {
-      setType("veterinario");
+    if (type === "owner") {
+      setType("veterinary");
     } else {
-      setType("dueño");
+      setType("owner");
     }
   };
 
@@ -71,15 +68,16 @@ export default function SignUp() {
   };
 
   const register = () => {
-    if (type === "dueño") {
+    if (type === "owner") {
       const data = {
         owner_name: fullName,
         phone: phone,
         email: email,
         image: image,
         password: password,
+        account_type: type,
       };
-
+console.log(data)
       axios
         .post(
           "https://backendgopaw-production.up.railway.app/registerowner",
@@ -91,7 +89,8 @@ export default function SignUp() {
         .catch((error) => {
           alert(error);
         });
-      // console.log(data);
+
+
     } else {
       const data = {
         veterinary_name: fullName,
@@ -99,6 +98,7 @@ export default function SignUp() {
         email: email,
         image: image,
         password: password,
+        account_type: type,
       };
       axios
         .post(
