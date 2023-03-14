@@ -1,94 +1,68 @@
 import React, { useEffect, useState } from "react";
-import people from "./data";
 import { FaChevronLeft, FaChevronRight, FaQuoteRight } from "react-icons/fa";
 import "./TopVetReviews.css";
 import axios from "axios";
 
 const TopVetReviews = () => {
   const [index, setIndex] = useState(0);
-  const [vetInfo, setVetInfo] = useState({});
+  const [vetInfo, setVetInfo] = useState([]);
 
-  const { name, date, image, text } = people[index];
-  const checkNumber = (number) => {
-    if (number > people.length - 1) {
-      return 0;
-    }
-    if (number < 0) {
-      return people.length - 1;
-    }
-    return number;
+  const { id, veterinary_name, phone, image } = vetInfo[index] || {};
+
+  const getRandomIntInclusive = (min, max) => {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1) + min);
   };
 
-  const nextPerson = () => {
-    setIndex((index) => {
-      let newIndex = index + 1;
-      return checkNumber(newIndex);
-    });
+  const getRandomPerson = () => {
+    let randomIndex = getRandomIntInclusive(0, vetInfo.length - 1);
+    if (randomIndex === index) {
+      randomIndex = index + 1;
+    }
+    setIndex(randomIndex);
   };
 
-  const prevPerson = () => {
-    setIndex((index) => {
-      let newIndex = index - 1;
-      return checkNumber(newIndex);
-    });
-  };
-
-  const minIndex=0;
-  const maxIndex=people.length-1;
-
-  
-  const getRandomPerson=()=>{
-    const getRandomIntInclusive=(min, max) =>{
-      min = Math.ceil(min);
-      max = Math.floor(max);
-      return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
-    }
-
-    let randomIndex=getRandomIntInclusive(minIndex, maxIndex);
-    if (randomIndex===index){
-      randomIndex=index+1
-    }
-    setIndex(checkNumber(randomIndex));
-
-  }
   const viewProfile = async () => {
     const urlServer = "https://backendgopaw-production.up.railway.app";
     const endpoint = `/veterinarys`;
     try {
       const { data } = await axios.get(urlServer + endpoint);
-      console.log(data)
-      setVetInfo(data);      
+      setVetInfo(data);
     } catch ({ response: { data: message } }) {
       alert(message + " 🙁");
       console.log(message);
-    }
+    }    
   };
+
   useEffect(() => {
     viewProfile();
-  }, [])
+  }, []);
 
   return (
     <article className="review">
-      <div> <h1> Reviews de Veterinarios</h1> 
+      <div>
+        <h1> Reviews de Veterinarios Aleatorios</h1>
       </div>
-      <div className="img-container">        
-        <img src={image} alt={name} className="person-img" />
+      <div className="img-container">
+        <img src={image || 'https://via.placeholder.com/150'} alt={id} className="person-img" />
         <span className="quote-icon">
           <FaQuoteRight />
         </span>
       </div>
-      <h4 className="author">{name}</h4>
-      <p className="job">{date}</p>
-      <p className="info">{text}</p>
+      <h4 className="author">{veterinary_name}</h4>
+      <p className="job">{phone}</p>
       <div className="button-container">
-        <button className="prev-btn" onClick={prevPerson}>
+        <button className="prev-btn" onClick={getRandomPerson}>
           <FaChevronLeft />
         </button>
-        <button className="next-btn" onClick={nextPerson}>
+        <button className="next-btn" onClick={getRandomPerson}>
           <FaChevronRight />
         </button>
       </div>
-      <button className="random-btn" onClick={getRandomPerson}>Más Reviews</button>
+      <button className="random-btn" onClick={getRandomPerson}>
+        Más Reviews
+      </button>
     </article>
   );
 };
