@@ -24,10 +24,13 @@ function Login() {
     try {
       if (!email || !password) return alert("Email y password obligatorias");
       const {data} = await axios.post(urlServer + endpoint, usuario);
-      const {token, id} = data
+      const {token, accountType, id} = data
       alert("Usuario identificado con éxito 😀");
       localStorage.setItem("token", token);
-      localStorage.setItem("idVet", id);
+      localStorage.setItem("accountType", accountType);
+      localStorage.setItem("id", id);
+
+      console.log(accountType + id)
       navigate("/");
     } catch ({ response: { data: message } }) {
       alert(message + " 🙁");
