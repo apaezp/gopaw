@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+
 import axios from "axios";
 export const ModificarPerfil = () => {
-  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     nombre: "",
     email: "",
@@ -23,7 +23,7 @@ export const ModificarPerfil = () => {
     // console.log(formData);
   };
   const changeProfile = async () => {
-    const id = localStorage.getItem("idVet");
+    const id = localStorage.getItem("id");
     // const token = localStorage.getItem("token");
     const urlServer = "http://localhost:8080";
     const endpoint = `/editveterinary/:${id}`;

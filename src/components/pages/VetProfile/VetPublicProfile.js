@@ -1,28 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {  ModificarPerfil } from "../../ModificarPerfil";
 import { PerfilCitas } from "../../PerfilCitas";
 import "./VetPublicProfile.css";
 import { PerfilReseña } from "../../PerfilReseña";
-import axios from "axios";
+import { AuthContext } from "../../../GlobalStates";
 function VetPublicProfile() {
   const [activeButton, setActiveButton] = useState('Inicio');
-  const [vet, setVet] = useState({})
-  const viewProfile = async () => {
-    const id = localStorage.getItem("idVet");
-    const urlServer = "http://localhost:8080";
-    const endpoint = `/veterinary/${id}`;
-    try {
-      const { data } = await axios.get(urlServer + endpoint, { params: { id } });
-      const vetData = data[0];
-      setVet(vetData);      
-    } catch ({ response: { data: message } }) {
-      alert(message + " 🙁");
-      console.log(message);
-    }
-  };
-  useEffect(() => {
-    viewProfile();
-  }, [])
+  const [authState] = useContext(AuthContext);
+
+  const {email, phone, id, account_type} = authState;
   
   return (
     <div className="container mt-3">
@@ -37,7 +23,7 @@ function VetPublicProfile() {
                     alt="user avatar"
                   />
                 </div>
-                <h5 className="mb-1 text-white">{vet.veterinary_name}</h5>
+                <h5 className="mb-1 text-white">{authState.veterinary_name}</h5>
                 {/* <h6 className="text-light">Zombie Killer</h6> */}
               </div>
               <div className="card-body">
@@ -47,7 +33,7 @@ function VetPublicProfile() {
                       <i className="fa fa-phone-square"></i>
                     </div>
                     <div className="list-details">
-                      <span>{vet.phone}</span>
+                      <span>{phone}</span>
                       <small>Celular</small>
                     </div>
                   </li>
@@ -56,7 +42,7 @@ function VetPublicProfile() {
                       <i className="fa fa-envelope"></i>
                     </div>
                     <div className="list-details">
-                      <span>{vet.email}</span>
+                      <span>{email}</span>
                       <small>Email</small>
                     </div>
                   </li>

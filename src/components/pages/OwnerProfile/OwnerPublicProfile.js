@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../../../GlobalStates";
 import "./OwnerPublicProfile.css";
 
+
 function OwnerPublicProfile() {
+  const [authState] = useContext(AuthContext);
+
+const {email, phone, id, account_type} = authState;
   return (
     <div class="containerOwnerPublicProfile">
       <div class="main-body">
@@ -17,7 +22,7 @@ function OwnerPublicProfile() {
                     width="150"
                   />
                   <div class="mt-3">
-                    <h4>John Doe</h4>
+                    <h4>{authState.owner_name}</h4>
                     <button class="btn btn-outline-primary">Message</button>
                   </div>
                 </div>
@@ -31,21 +36,21 @@ function OwnerPublicProfile() {
                   <div class="col-sm-3">
                     <h6 class="mb-0">Full Name</h6>
                   </div>
-                  <div class="col-sm-9 text-secondary">Kenneth Valdez</div>
+                  <div class="col-sm-9 text-secondary">{authState.owner_name}</div>
                 </div>
                 <hr />
                 <div class="row">
                   <div class="col-sm-3">
                     <h6 class="mb-0">Email</h6>
                   </div>
-                  <div class="col-sm-9 text-secondary">fip@jukmuh.al</div>
+                  <div class="col-sm-9 text-secondary">{email}</div>
                 </div>
                 <hr />
                 <div class="row">
                   <div class="col-sm-3">
                     <h6 class="mb-0">Phone</h6>
                   </div>
-                  <div class="col-sm-9 text-secondary">(239) 816-9029</div>
+                  <div class="col-sm-9 text-secondary">{phone}</div>
                 </div>
                 {/* <hr /> */}
                 {/* <div class="row">

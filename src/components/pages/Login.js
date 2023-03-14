@@ -1,13 +1,15 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import "./Login.css"
 import Video from '../assets/video/login.mp4';
 import Footer from '../Footer'
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { AuthContext } from "../../GlobalStates";
 
 
 function Login() {
   const navigate = useNavigate();
+  const [authState, setAuthState] = useContext(AuthContext);
   const [usuario, setUsuarioLocal] = useState({});
 
   const handleSetUsuario = ({ target: { value, name } }) => {
@@ -18,9 +20,10 @@ function Login() {
   };
 
   const iniciarSesion = async () => {
-    const urlServer = "https://backendgopaw-production.up.railway.app";
+    const urlServer = "http://localhost:8080";
     const endpoint = "/login";
     const { email, password } = usuario;
+    console.log(authState);
     try {
       if (!email || !password) return alert("Email y password obligatorias");
       const {data} = await axios.post(urlServer + endpoint, usuario);
@@ -30,13 +33,32 @@ function Login() {
       localStorage.setItem("accountType", accountType);
       localStorage.setItem("id", id);
 
-      console.log(accountType + id)
-      navigate("/");
+      viewProfile(accountType, id);
+      accountType === "veterinary"
+      ? navigate("/pages/VetProfile/VetPublicProfile")
+      : navigate("/pages/OwnerProfile/OwnerPublicProfile");
+    
     } catch ({ response: { data: message } }) {
       alert(message + " 🙁");
       console.log(message);
     }
   };
+
+  const viewProfile = async (accountType, id) => {
+    const urlServerGET = "http://localhost:8080";
+    let endpointGET;
+    accountType === "veterinary"
+    ? endpointGET = `/veterinary/${id}`
+    : endpointGET = `/owner/${id}`;
+    try {
+      const {data} = await axios.get(urlServerGET + endpointGET, { params: { id } });
+      setAuthState(data[0]);
+    } catch ({ response: { data: message } }) {
+      alert(message + " 🙁");
+      console.log(message);
+    }
+  };
+
   return (
     <>
     <div className="login-container">
