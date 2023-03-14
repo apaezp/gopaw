@@ -25,13 +25,14 @@ body {
       }  
       
       .hero-container > h1 {        
-        color: #fff;
+        color: #f5f0f0;
         font-size: 20px;
         margin-top: -100px;
         margin-left: 50px;
         margin-right: 50px;
         font-family: 'Cinzel', serif;
         justify-content:center;
+        align-items: center;
         
       }
       

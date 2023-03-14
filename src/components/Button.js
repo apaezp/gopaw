@@ -7,8 +7,7 @@ const SIZES = ['btn--medium', 'btn--large'];
 
 export const Button = ({
   children,
-  type,
-  onClick,
+  type, 
   buttonStyle,
   buttonSize
 }) => {
