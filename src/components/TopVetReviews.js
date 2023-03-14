@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import people from "./data";
 import { FaChevronLeft, FaChevronRight, FaQuoteRight } from "react-icons/fa";
 import "./TopVetReviews.css";
+import axios from "axios";
 
 const TopVetReviews = () => {
   const [index, setIndex] = useState(0);
+  const [vetInfo, setVetInfo] = useState({});
+
   const { name, date, image, text } = people[index];
   const checkNumber = (number) => {
     if (number > people.length - 1) {
@@ -48,7 +51,21 @@ const TopVetReviews = () => {
     setIndex(checkNumber(randomIndex));
 
   }
-  
+  const viewProfile = async () => {
+    const urlServer = "https://backendgopaw-production.up.railway.app";
+    const endpoint = `/veterinarys`;
+    try {
+      const { data } = await axios.get(urlServer + endpoint);
+      console.log(data)
+      setVetInfo(data);      
+    } catch ({ response: { data: message } }) {
+      alert(message + " 🙁");
+      console.log(message);
+    }
+  };
+  useEffect(() => {
+    viewProfile();
+  }, [])
 
   return (
     <article className="review">
