@@ -18,7 +18,7 @@ function Login() {
   };
 
   const iniciarSesion = async () => {
-    const urlServer = "http://localhost:8080";
+    const urlServer = "https://backendgopaw-production.up.railway.app";
     const endpoint = "/login";
     const { email, password } = usuario;
     try {
