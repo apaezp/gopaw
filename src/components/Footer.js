@@ -42,9 +42,9 @@ function Footer() {
               className='footer-input'
               name='email'
               type='email'
-              placeholder='Your Email'
+              placeholder='Escribe tu e-mail'
             />
-            <Button buttonStyle='btn--outline'>Subscribe</Button>
+            <Button buttonStyle='btn--outline'>Suscribirse</Button>
           </form>
         </div>
       </section>
@@ -73,7 +73,7 @@ function Footer() {
               <FaPaw />
             </Link>
           </div>
-          <small className='website-rights'>We do not own any of the copyrights © 2023</small>
+          <small className='website-rights'>Matias Briceño - Andres Muñoz - Andrea Páez © 2023</small>
           <div className='social-icons'>
             <Link
               className='social-icon-link facebook'
