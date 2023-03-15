@@ -4,25 +4,27 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../GlobalStates";
 import "./OwnerPrivateProfile.css";
 import jwtDecode from "jwt-decode";
-// import { useHistory } from "react-router-dom";
 
 function OwnerPrivateProfile() {
 
   const navigate = useNavigate();
   const [authState] = useContext(AuthContext);
   const { email, phone, id, account_type } = authState;
-  const token = localStorage.getItem('token')
-  // const history = useHistory();
+
   console.log(authState)
 
   useEffect(() => {
-      if(isTokenExpired(token)){
-          navigate('../Login')
+      if( !authState.token || isTokenExpired(authState.token)){
+          navigate('/pages/Login')
       }
-  },[token])
+  },[authState.token])
 
+  const logOut = () => {
+    delete authState.token
+    navigate('/')
+  }
 
-  function isTokenExpired(token) {
+  const isTokenExpired = (token) => {
     if (!token) {
       return true;
     }
@@ -59,7 +61,7 @@ function OwnerPrivateProfile() {
                   />
                   <div className="mt-3">
                     <h4>{authState.owner_name}</h4>
-                    <button className="btn btn-outline-primary">Message</button>
+                    <button className="btn btn-outline-primary" onClick={() => logOut()}>Log Out</button>
                   </div>
                 </div>
               </div>
