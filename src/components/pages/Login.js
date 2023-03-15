@@ -32,7 +32,7 @@ function Login() {
       localStorage.setItem("id", id);
 
       
-      viewProfile(accountType, id, token);
+      await viewProfile(accountType, id, token);
       accountType === "veterinary"
         ? navigate("/pages/VetProfile/VetPrivateProfile")
         : navigate("/pages/OwnerProfile/OwnerPrivateProfile");

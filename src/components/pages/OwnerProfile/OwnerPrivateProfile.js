@@ -8,7 +8,7 @@ import jwtDecode from "jwt-decode";
 function OwnerPrivateProfile() {
 
   const navigate = useNavigate();
-  const [authState] = useContext(AuthContext);
+  const [authState, setAuthState] = useContext(AuthContext);
   const { email, phone, id, account_type } = authState;
 
   console.log(authState)
@@ -20,7 +20,7 @@ function OwnerPrivateProfile() {
   },[authState.token])
 
   const logOut = () => {
-    delete authState.token
+    setAuthState({})
     navigate('/')
   }
 

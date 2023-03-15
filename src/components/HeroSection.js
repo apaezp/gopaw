@@ -5,11 +5,26 @@ import Video from "./assets/video/herosection.mp4";
 import "./HeroSection.css";
 import { Link } from "react-router-dom";
 
+import { useContext } from "react";
+import { AuthContext } from "../GlobalStates";
+
+
+
 function HeroSection() {
+
+  const [authState] = useContext(AuthContext);
+  console.log(authState)
+  
+  let name = ""
+
+  if(authState.owner_name){
+      name = authState.owner_name
+  }
+
   return (
     <div className="hero-container"> 
     <video src= {Video} autoPlay loop muted />                      
-          <h1>“¡Bienvenido a nuestra página de contacto para veterinarios y dueños de mascotas!”</h1>
+          <h1>“¡Bienvenido {name} a nuestra página de contacto para veterinarios y dueños de mascotas!”</h1>
           <p> Esto es GoPaw!</p>
           <div className="hero-btns">
           <Link to='/pages/ContactPage'>
