@@ -1,33 +1,31 @@
-import React, {useContext, useState} from "react";
-import "./Login.css"
-import Video from '../assets/video/login.mp4';
-import Footer from '../Footer'
+import React, { useContext, useState } from "react";
+import "./Login.css";
+import Video from "../assets/video/login.mp4";
+import Footer from "../Footer";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../../GlobalStates";
 
-
 function Login() {
   const navigate = useNavigate();
   const [authState, setAuthState] = useContext(AuthContext);
+
   const [usuario, setUsuarioLocal] = useState({});
 
   const handleSetUsuario = ({ target: { value, name } }) => {
     const field = {};
     field[name] = value;
     setUsuarioLocal({ ...usuario, ...field });
-
   };
 
   const iniciarSesion = async () => {
-    const urlServer = "http://localhost:8080";
+    const urlServer = "https://backendgopaw-production.up.railway.app";
     const endpoint = "/login";
     const { email, password } = usuario;
-    console.log(authState);
     try {
       if (!email || !password) return alert("Email y password obligatorias");
-      const {data} = await axios.post(urlServer + endpoint, usuario);
-      const {token, accountType, id} = data
+      const { data } = await axios.post(urlServer + endpoint, usuario);
+      const { token, accountType, id } = data;
       alert("Usuario identificado con éxito 😀");
       localStorage.setItem("token", token);
       localStorage.setItem("accountType", accountType);
@@ -35,9 +33,8 @@ function Login() {
 
       viewProfile(accountType, id);
       accountType === "veterinary"
-      ? navigate("/pages/VetProfile/VetPublicProfile")
-      : navigate("/pages/OwnerProfile/OwnerPublicProfile");
-    
+        ? navigate("/pages/VetProfile/VetPrivateProfile")
+        : navigate("/pages/OwnerProfile/OwnerPrivateProfile");
     } catch ({ response: { data: message } }) {
       alert(message + " 🙁");
       console.log(message);
@@ -45,13 +42,15 @@ function Login() {
   };
 
   const viewProfile = async (accountType, id) => {
-    const urlServerGET = "http://localhost:8080";
+    const urlServerGET = "https://backendgopaw-production.up.railway.app";
     let endpointGET;
     accountType === "veterinary"
-    ? endpointGET = `/veterinary/${id}`
-    : endpointGET = `/owner/${id}`;
+      ? (endpointGET = `/veterinary/${id}`)
+      : (endpointGET = `/owner/${id}`);
     try {
-      const {data} = await axios.get(urlServerGET + endpointGET, { params: { id } });
+      const { data } = await axios.get(urlServerGET + endpointGET, {
+        params: { id },
+      });
       setAuthState(data[0]);
     } catch ({ response: { data: message } }) {
       alert(message + " 🙁");
@@ -61,39 +60,41 @@ function Login() {
 
   return (
     <>
-    <div className="login-container">
-      <video src={Video} autoPlay loop muted />
-      <div className="form-login">
-        <div className="form-body">
-          <div className="email">
-            <label className="form__label">Email</label>
-            <input
-              value={usuario.email}
-              onChange={handleSetUsuario}
-              className="form__input"
-              type="email"
-              name="email"
-              placeholder="Email"
-            ></input>
+      <div className="login-container">
+        <video src={Video} autoPlay loop muted />
+        <div className="form-login">
+          <div className="form-body">
+            <div className="email">
+              <label className="form__label">Email</label>
+              <input
+                value={usuario.email}
+                onChange={handleSetUsuario}
+                className="form__input"
+                type="email"
+                name="email"
+                placeholder="Email"
+              ></input>
+            </div>
+            <div className="password">
+              <label className="form__label">Contraseña</label>
+              <input
+                value={usuario.password}
+                onChange={handleSetUsuario}
+                className="form__input"
+                type="password"
+                name="password"
+                placeholder="Contraseña"
+              ></input>
+            </div>
           </div>
-          <div className="password">
-            <label className="form__label">Contraseña</label>
-            <input
-              value={usuario.password}
-              onChange={handleSetUsuario}
-              className="form__input"
-              type="password"
-              name="password"
-              placeholder="Contraseña"
-            ></input>
+          <div className="footer">
+            <button type="submit" className="btnSignUp" onClick={iniciarSesion}>
+              Ingresar
+            </button>
           </div>
-        </div>
-        <div className="footer">
-          <button type="submit" className="btnSignUp" onClick={iniciarSesion}>Ingresar</button>
         </div>
       </div>
-    </div>
-    <Footer/>
+      <Footer />
     </>
   );
 }

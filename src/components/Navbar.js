@@ -56,7 +56,7 @@ function Navbar() {
             </li>
             <li className='nav-item'>
               <Link
-                to='/pages/OwnerProfile/OwnerHome'
+                to='/pages/OwnerProfile/OwnerPrivateProfile'
                 className='nav-links'
                 onClick={click}
               >
