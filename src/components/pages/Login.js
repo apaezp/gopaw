@@ -31,7 +31,8 @@ function Login() {
       localStorage.setItem("accountType", accountType);
       localStorage.setItem("id", id);
 
-      viewProfile(accountType, id);
+      
+      viewProfile(accountType, id, token);
       accountType === "veterinary"
         ? navigate("/pages/VetProfile/VetPrivateProfile")
         : navigate("/pages/OwnerProfile/OwnerPrivateProfile");
@@ -41,7 +42,7 @@ function Login() {
     }
   };
 
-  const viewProfile = async (accountType, id) => {
+  const viewProfile = async (accountType, id, token) => {
     const urlServerGET = "https://backendgopaw-production.up.railway.app";
     let endpointGET;
     accountType === "veterinary"
@@ -51,7 +52,11 @@ function Login() {
       const { data } = await axios.get(urlServerGET + endpointGET, {
         params: { id },
       });
+
+      data[0].token = token
+      
       setAuthState(data[0]);
+
     } catch ({ response: { data: message } }) {
       alert(message + " 🙁");
       console.log(message);

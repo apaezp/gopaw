@@ -1,13 +1,48 @@
 import React from "react";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../GlobalStates";
 import "./OwnerPrivateProfile.css";
+import jwtDecode from "jwt-decode";
+// import { useHistory } from "react-router-dom";
 
 function OwnerPrivateProfile() {
-  const [authState] = useContext(AuthContext);
 
-  // localStorage.getItem("token", token);
+  const navigate = useNavigate();
+  const [authState] = useContext(AuthContext);
   const { email, phone, id, account_type } = authState;
+  const token = localStorage.getItem('token')
+  // const history = useHistory();
+  console.log(authState)
+
+  useEffect(() => {
+      if(isTokenExpired(token)){
+          navigate('../Login')
+      }
+  },[token])
+
+
+  function isTokenExpired(token) {
+    if (!token) {
+      return true;
+    }
+    try {
+      // Decodificar el token utilizando la librería jwt-decode.
+      const decodedToken = jwtDecode(token);
+  
+      // Obtener la fecha actual en milisegundos.
+      const currentTime = Date.now() / 1000;
+  
+      // Si la fecha actual es mayor que la fecha de expiración del token, se considera que ha expirado.
+      return decodedToken.exp < currentTime;
+    } catch (error) {
+      // Si ocurre un error al decodificar el token, se considera que ha expirado.
+      return true;
+    }
+  }
+
+
+
   return (
     <div className="containerOwnerPublicProfile">
       <div className="main-body">
