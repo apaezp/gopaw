@@ -4,11 +4,29 @@ import { Button } from './Button';
 import { FaPaw, FaTiktok} from 'react-icons/fa';
 import {AiOutlineInstagram, AiOutlineYoutube} from 'react-icons/ai';
 import {FiFacebook, FiTwitter} from 'react-icons/fi';
+import { useState, useEffect } from 'react';
 
 import { Link } from 'react-router-dom';
 
 
 function Footer() {
+  const [click, setClick] = useState(false);
+  const [button, setButton] = useState(true);
+  
+
+  const showButton = () => {
+    if (window.innerWidth <= 960) {
+      setButton(false);
+    } else {
+      setButton(true);
+    }
+  };
+
+  useEffect(() => {
+    showButton();
+  }, []);
+
+  window.addEventListener('resize', showButton);
   return (
     <div className='footer-container'>
       <section className='footer-subscription'>
@@ -34,14 +52,14 @@ function Footer() {
         <div className='footer-link-wrapper'>
           <div className='footer-link-items'>
             <h2>Sobre nosotros</h2>
-            <Link to='/sign-up'>Como funciona</Link>          
+            <Link to='./pages/ContactPage'>Como funciona</Link>          
             
-            <Link to='/'>Terminos y condiciones</Link>
+            <Link to='./pages/TermsAndConditions' onClick={click}>Terminos y condiciones</Link>
           </div>
           <div className='footer-link-items'>
             <h2>Contactanos</h2>
-            <Link to='/'>Contacto</Link>
-            <Link to='/'>Ayuda</Link>
+            <Link to='./pages/ContactInfo'>Contacto</Link>
+            <Link to='./pages/ContactHelp'>Ayuda</Link>
             
           </div>
         </div>

@@ -13,6 +13,10 @@ import OwnerPrivateProfile from "./components/pages/OwnerProfile/OwnerPrivatePro
 import { AuthProvider } from "./GlobalStates";
 
 import "./App.css";
+import TermsAndConditions from "./components/pages/TermsAndConditions";
+import ContactPage from "./components/pages/ContactPage";
+import ContactInfo from "./components/pages/ContactInfo";
+import ContactHelp from "./components/pages/ContactHelp";
 
 function App() {
   return (
@@ -26,7 +30,12 @@ function App() {
             <Route path="pages/SignUp" element={<SignUp />} />
             <Route path="pages/Login" element={<Login />} />
             <Route path="pages/Search" element={<Search />} />
+            <Route path="pages/TermsAndConditions" element={<TermsAndConditions />} />
+            <Route path="pages/ContactPage" element={<ContactPage />} />
+            <Route path="pages/ContactInfo" element={<ContactInfo />} />
+            <Route path="pages/ContactHelp" element={<ContactHelp />} />
             <Route path="pages/VetProfile/VetHome" element={<VetHome />} />
+
             <Route
               path="pages/VetProfile/VetPublicProfile"
               element={<VetPublicProfile />}
