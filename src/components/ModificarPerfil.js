@@ -1,48 +1,101 @@
-import React, { useState } from "react";
-
+import React, { useContext, useState } from "react";
 import axios from "axios";
+import { AuthContext } from "../GlobalStates";
+
+
+
 export const ModificarPerfil = () => {
+  const [authState, setAuthState] = useContext(AuthContext);
 
-  const [formData, setFormData] = useState({
-    nombre: "",
+  const initialFormData = {
+    veterinary_name: "",
     email: "",
-    telefono: "",
-    cambiarFoto: "",
-  });
-
+    phone: "",
+    image: "",
+    password: "",
+    confirmPassword: "",
+  };
+  
+  const [formData, setFormData] = useState(initialFormData);
+  
   const handleChange = (e) => {
+    console.log(formData)
     const { name, value } = e.target;
     setFormData((prev) => {
       return { ...prev, [name]: value };
     });
-    // console.log(formData);
   };
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(formData);
+    
   };
+  
+  const clearForm = () => {
+    setFormData(initialFormData);
+  };
+  
   const changeProfile = async () => {
     const id = localStorage.getItem("id");
-    // const token = localStorage.getItem("token");
-    const urlServer = "http://localhost:8080";
+    const urlServer = "https://backendgopaw-production.up.railway.app";
     const endpoint = `/editveterinary/:${id}`;
-    const { nombre, telefono, email  } = formData;
-    const newVetData = {id, nombre, telefono, email }
+    const { veterinary_name, phone, email, image, password, confirmPassword } = formData;
+    const newVetData = {id, veterinary_name, phone, email, image}
+
+    const errorMsg = (!password || !confirmPassword) ? "Contraseñas no coinciden" :
+    (!veterinary_name || !phone || !email || !password || !confirmPassword) ? "Por favor completa todos los campos." :
+    "";
+
+    if (errorMsg) {
+    alert(errorMsg);
+    return;
+    }
+
     try {
-      // const responseToken = await axios.put(urlServer + endpoint, {
-      //   headers: { Authorization: "Bearer " + token },
-      // });
       const response = await axios.put(urlServer + endpoint, newVetData);
       console.log(response)
-      
       alert("Usuario modificado exitosamente😀");
+
+      changePass(id, password);
+      viewProfile(id);  
+      clearForm(); // Limpiar el formulario después de enviar los datos
     } catch ({ response: { data: message } }) {
       alert(message + " 🙁");
       console.log(message);
     }
-    
   };
+
+
+  const viewProfile = async (id) => {
+    const urlServerGET = "https://backendgopaw-production.up.railway.app";
+    const endpointGET = `/veterinary/${id}`
+  
+    const response = await axios.get(urlServerGET + endpointGET, {
+      params: { id },
+    });
+    if (response && response.data) {
+      console.log(response.data[0]);
+      setAuthState(response.data[0]);
+    } else {
+      console.error("Error al obtener datos del perfil del veterinario.");
+    }
+  };
+  const changePass = async (id, password) => {
+    const urlServer = "https://backendgopaw-production.up.railway.app";
+    const endpoint = `/editveterinarypassword/${id}`
+  
+    
+    try {
+      const response = await axios.put(urlServer + endpoint, {id, password})
+       alert("Contraseña modificada correctamente");
+       console.log(response);
+
+    } catch ({ response: { data: message } }) {
+      alert(message + " 🙁");
+      console.log(message);
+    }
+  };
+  
   return (
     <div className="tab-pane" id="edit">
       <form onSubmit={handleSubmit}>
@@ -54,7 +107,7 @@ export const ModificarPerfil = () => {
             <input
               className="form-control"
               type="text"
-              name="nombre"
+              name="veterinary_name"
               onChange={handleChange}
             />
           </div>
@@ -94,7 +147,7 @@ export const ModificarPerfil = () => {
               className="form-control"
               type="text"
               onChange={handleChange}
-              name="telefono"
+              name="phone"
             />
           </div>
         </div>
@@ -120,7 +173,7 @@ export const ModificarPerfil = () => {
               className="form-control"
               type="file"
               onChange={handleChange}
-              name="cambiarFoto"
+              name="image"
             />
           </div>
         </div>
@@ -168,6 +221,7 @@ export const ModificarPerfil = () => {
             <input
               className="form-control"
               type="password"
+              name="password"
               onChange={handleChange}
             />
           </div>
@@ -180,6 +234,7 @@ export const ModificarPerfil = () => {
             <input
               className="form-control"
               type="password"
+              name="confirmPassword"
               onChange={handleChange}
             />
           </div>

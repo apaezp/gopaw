@@ -52,14 +52,14 @@ function Footer() {
         <div className='footer-link-wrapper'>
           <div className='footer-link-items'>
             <h2>Sobre nosotros</h2>
-            <Link to='./pages/ContactPage'>Como funciona</Link>          
+            <Link to='/ContactPage' onClick={click}>Como funciona</Link>          
             
-            <Link to='./pages/TermsAndConditions' onClick={click}>Terminos y condiciones</Link>
+            <Link to='/TermsAndConditions' onClick={click}>Terminos y condiciones</Link>
           </div>
           <div className='footer-link-items'>
             <h2>Contactanos</h2>
-            <Link to='./pages/ContactInfo'>Contacto</Link>
-            <Link to='./pages/ContactHelp'>Ayuda</Link>
+            <Link to='/ContactInfo' onClick={click}>Contacto</Link>
+            <Link to='/ContactHelp' onClick={click}>Ayuda</Link>
             
           </div>
         </div>

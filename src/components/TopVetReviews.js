@@ -6,8 +6,16 @@ import axios from "axios";
 const TopVetReviews = () => {
   const [index, setIndex] = useState(0);
   const [vetInfo, setVetInfo] = useState([]);
+  const [reviews, setReviews] = useState([]);
 
-  const { id, veterinary_name, phone, image } = vetInfo[index] || {};
+  const { 
+    id, 
+    veterinary_name, 
+    phone, 
+    image, 
+    review: { title, date, content } = {}
+  } = vetInfo[index] || {};
+  
 
   const getRandomIntInclusive = (min, max) => {
     min = Math.ceil(min);
@@ -23,21 +31,30 @@ const TopVetReviews = () => {
     setIndex(randomIndex);
   };
 
+  const filteredReviews = reviews.filter((review) => review.veterinary_id === vetInfo[index].id);
+  const reviewContent = filteredReviews.length > 0 ? filteredReviews[0].content : '';
+
   const viewProfile = async () => {
     const urlServer = "https://backendgopaw-production.up.railway.app";
-    const endpoint = `/veterinarys`;
+    let endpoint = `/veterinarys`;
+  
     try {
-      const { data } = await axios.get(urlServer + endpoint);
-      setVetInfo(data);
+      const { data: vetData } = await axios.get(urlServer + endpoint);
+      setVetInfo(vetData);
+  
+      endpoint = `/reviews`;
+      const { data: reviewsData } = await axios.get(urlServer + endpoint);
+      setReviews(reviewsData);
+      console.log(reviewsData)
     } catch ({ response: { data: message } }) {
       alert(message + " 🙁");
       console.log(message);
     }    
-  };
-
+  };  
+  
   useEffect(() => {
     viewProfile();
-  }, []);
+  }, []); 
 
   return (
     <article className="review">
@@ -51,7 +68,10 @@ const TopVetReviews = () => {
         </span>
       </div>
       <h4 className="author">{veterinary_name}</h4>
-      <p className="job">{phone}</p>
+      <p className="phone">{phone}</p>
+      {reviews.length > 1 && (
+      <h4>{reviewContent}</h4>
+      )}
       <div className="button-container">
         <button className="prev-btn" onClick={getRandomPerson}>
           <FaChevronLeft />

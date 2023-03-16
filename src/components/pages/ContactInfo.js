@@ -1,8 +1,10 @@
 import React from 'react';
 import './ContactInfo.css';
+import Footer from '../Footer'
 
 function ContactInfo() {
   return (
+    <> 
     <div className="contact-info-container">
       <h2>Información de Contacto</h2>
       <div className="contact-info">
@@ -20,6 +22,8 @@ function ContactInfo() {
         </div>
       </div>
     </div>
+    <Footer />
+    </>
   );
 }
 

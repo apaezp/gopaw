@@ -36,8 +36,7 @@
     --radius: 0.25rem;
     --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    --max-width: 1170px;
-    --fixed-width: 620px;
+   
   }
  .title {
     text-align: center;
@@ -106,15 +105,12 @@
   .author {
     margin-bottom: 0.25rem;
   }
-  .job {
+  .phone {
     margin-bottom: 0.5rem;
     text-transform: uppercase;
     color: var(--clr-primary-5);
     font-size: 0.85rem;
-  }
-  .info {
-    margin-bottom: 0.75rem;
-  }
+  }  
   .prev-btn,
   .next-btn {
     color: var(--clr-primary-7);
