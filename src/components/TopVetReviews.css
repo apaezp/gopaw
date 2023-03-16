@@ -106,15 +106,12 @@
   .author {
     margin-bottom: 0.25rem;
   }
-  .job {
+  .phone {
     margin-bottom: 0.5rem;
     text-transform: uppercase;
     color: var(--clr-primary-5);
     font-size: 0.85rem;
-  }
-  .info {
-    margin-bottom: 0.75rem;
-  }
+  }  
   .prev-btn,
   .next-btn {
     color: var(--clr-primary-7);
