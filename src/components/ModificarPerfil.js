@@ -42,7 +42,7 @@ export const ModificarPerfil = () => {
     const { veterinary_name, phone, email, image, password, confirmPassword } = formData;
     const newVetData = {id, veterinary_name, phone, email, image}
 
-    const errorMsg = (!password || !confirmPassword) ? "Contraseñas no coinciden" :
+    const errorMsg = (password !== confirmPassword) ? "Contraseñas no coinciden o faltan completar campos" :
     (!veterinary_name || !phone || !email || !password || !confirmPassword) ? "Por favor completa todos los campos." :
     "";
 
