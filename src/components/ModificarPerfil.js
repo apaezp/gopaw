@@ -31,9 +31,6 @@ export const ModificarPerfil = () => {
     
   };
   
-  const clearForm = () => {
-    setFormData(initialFormData);
-  };
   
   const changeProfile = async () => {
     const id = localStorage.getItem("id");
@@ -58,7 +55,6 @@ export const ModificarPerfil = () => {
 
       changePass(id, password);
       viewProfile(id);  
-      clearForm(); // Limpiar el formulario después de enviar los datos
     } catch ({ response: { data: message } }) {
       alert(message + " 🙁");
       console.log(message);
@@ -215,7 +211,7 @@ export const ModificarPerfil = () => {
         </div> */}
         <div className="form-group row">
           <label className="col-lg-3 col-form-label form-control-label">
-            Contraseña
+            Nueva Contraseña
           </label>
           <div className="col-lg-9">
             <input
@@ -228,7 +224,7 @@ export const ModificarPerfil = () => {
         </div>
         <div className="form-group row">
           <label className="col-lg-3 col-form-label form-control-label">
-            Confirmar contraseña
+            Confirmar nueva contraseña
           </label>
           <div className="col-lg-9">
             <input
