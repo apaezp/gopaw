@@ -1,8 +1,10 @@
 import React from 'react';
 import "./ContactHelp.css";
+import Footer from '../Footer'
 
 function ContactHelp() {
   return (
+    <> 
     <div className="contact-help-container">
       <h2>¿Necesitas ayuda?</h2>
       <p>Por favor, completa el siguiente formulario y nos pondremos en contacto contigo lo antes posible.</p>
@@ -20,8 +22,10 @@ function ContactHelp() {
         <textarea id="message" name="message" required></textarea>
 
         <button type="submit">Enviar</button>
-      </form>
+      </form>      
     </div>
+    <Footer />
+    </>
   )
 }
 

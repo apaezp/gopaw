@@ -1,8 +1,10 @@
 import React from 'react';
 import './TermsAndConditions.css';
+import Footer from '../Footer'
 
 function TermsAndConditions() {
   return (
+    <> 
     <div className="termsAndConditions">
       <h1>Términos y Condiciones</h1>
       <p>Bienvenido a nuestra página web. Al acceder o utilizar nuestro sitio web, usted acepta estar sujeto a los siguientes términos y condiciones:</p>
@@ -22,6 +24,8 @@ function TermsAndConditions() {
       <h2>5. Modificaciones de los Términos y Condiciones</h2>
       <p>Nos reservamos el derecho de modificar estos términos y condiciones en cualquier momento. Los cambios entrarán en vigor inmediatamente después de su publicación en el sitio web.</p>
     </div>
+    <Footer />
+    </>
   )
 }
 
