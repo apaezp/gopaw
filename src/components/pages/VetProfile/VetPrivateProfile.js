@@ -4,12 +4,27 @@ import { PerfilCitas } from "../../PerfilCitas";
 import "./VetPublicProfile.css";
 import { PerfilReseña } from "../../PerfilReseña";
 import { AuthContext } from "../../../GlobalStates";
+import { useNavigate } from "react-router-dom";
 
 function VetPrivateProfile() {
+  const navigate = useNavigate();
   const [activeButton, setActiveButton] = useState('Inicio');
+  const [showInfo, setShowInfo] = useState(false)
   const [authState] = useContext(AuthContext);
-  const {veterinary_name, email, phone} = authState;
-  
+  const {veterinary_name, email, phone, token} = authState;
+
+  const info = () => {
+    if(token){
+      setShowInfo(true)
+    }else {
+      setShowInfo(false);
+      navigate("/pages/login");
+    };
+  };
+ useEffect(() => {
+    info();
+ }, [])
+ 
   return (
     <div className="container mt-3">
       <div className="row">
@@ -84,70 +99,72 @@ function VetPrivateProfile() {
             </div>
           </div>
         </div>
-        <div className="col-lg-8">
-          <div className="card z-depth-3">
-            <div className="card-body">
-              <ul className="nav nav-pills nav-pills-primary nav-justified">
-                {/* <li className="nav-item">
-                  <button
-                    type="button"
-                    class="btn btn-primary"
-                    onClick={() => setActiveButton('Inicio')}
-                  >
-                    Perfil <span className="hidden-xs"></span>
-                  </button>
-                </li> */}
-                <li className="nav-item">
-                  <button
-                    type="button"
-                    class="btn btn-primary"
-                    onClick={() => setActiveButton('Citas')}
-                  >
-                    Mis citas <span className="hidden-xs"></span>
-                  </button>
-                </li>
-                <li className="nav-item">
-                  <button
-                    type="button"
-                    class="btn btn-primary"
-                    onClick={() => setActiveButton('Reseña')}
-                  >
-                    Reseñas <span className="hidden-xs"></span>
-                  </button>
-                </li>
-                <li className="nav-item">
-                  <button
-                    type="button"
-                    class="btn btn-primary"
-                    onClick={() => setActiveButton('Contrasena')}
-                  >
-                    Modificar Perfil <span className="hidden-xs"></span>
-                  </button>
-                </li>
-              </ul>
-              <div className="tab-content p-3">
-                {/* {activeButton === 'Inicio' &&
-                 <InicioPerfil />
-                 } */}
-                {activeButton === 'Citas' && 
+       {showInfo === true &&
+         <div className="col-lg-8">
+         <div className="card z-depth-3">
+           <div className="card-body">
+             <ul className="nav nav-pills nav-pills-primary nav-justified">
+               {/* <li className="nav-item">
+                 <button
+                   type="button"
+                   class="btn btn-primary"
+                   onClick={() => setActiveButton('Inicio')}
+                 >
+                   Perfil <span className="hidden-xs"></span>
+                 </button>
+               </li> */}
+               <li className="nav-item">
+                 <button
+                   type="button"
+                   class="btn btn-primary"
+                   onClick={() => setActiveButton('Citas')}
+                 >
+                   Mis citas <span className="hidden-xs"></span>
+                 </button>
+               </li>
+               <li className="nav-item">
+                 <button
+                   type="button"
+                   class="btn btn-primary"
+                   onClick={() => setActiveButton('Reseña')}
+                 >
+                   Reseñas <span className="hidden-xs"></span>
+                 </button>
+               </li>
+               <li className="nav-item">
+                 <button
+                   type="button"
+                   class="btn btn-primary"
+                   onClick={() => setActiveButton('Contrasena')}
+                 >
+                   Modificar Perfil <span className="hidden-xs"></span>
+                 </button>
+               </li>
+             </ul>
+             <div className="tab-content p-3">
+               {/* {activeButton === 'Inicio' &&
+                <InicioPerfil />
+                } */}
+               {activeButton === 'Citas' && 
+               <div>
+                   <PerfilCitas/>
+               </div>
+               }
+               {activeButton === 'Reseña' && 
+               <div>
+                   <PerfilReseña/>
+               </div>
+               }
+               {activeButton === 'Contrasena' &&
                 <div>
-                    <PerfilCitas/>
+                   <ModificarPerfil />
                 </div>
                 }
-                {activeButton === 'Reseña' && 
-                <div>
-                    <PerfilReseña/>
-                </div>
-                }
-                {activeButton === 'Contrasena' &&
-                 <div>
-                    <ModificarPerfil />
-                 </div>
-                 }
-              </div>
-            </div>
-          </div>
-        </div>
+             </div>
+           </div>
+         </div>
+       </div>
+       }
       </div>
     </div>
   );
