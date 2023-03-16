@@ -36,9 +36,9 @@ function Login() {
       accountType === "veterinary"
         ? navigate("/pages/VetProfile/VetPrivateProfile")
         : navigate("/pages/OwnerProfile/OwnerPrivateProfile");
-    } catch ({ response: { data: message } }) {
-      alert(message + " 🙁");
-      console.log(message);
+    } catch (error) {
+      alert("Correo o contraseña incorrectas, intenta nuevamente");
+      console.log(error);
     }
   };
 
