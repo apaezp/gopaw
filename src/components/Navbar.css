@@ -6,7 +6,8 @@
     align-items: center;
     font-family: 'Cinzel', serif;
     font-size: 1.2rem;
-    position: sticky;
+    position: fixed;
+    width: 100%;
     top: 0;
     z-index: 999;
   }
