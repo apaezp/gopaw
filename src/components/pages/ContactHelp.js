@@ -6,7 +6,7 @@ function ContactHelp() {
     <div className="contact-help-container">
       <h2>¿Necesitas ayuda?</h2>
       <p>Por favor, completa el siguiente formulario y nos pondremos en contacto contigo lo antes posible.</p>
-      <form>
+      <form className="contact-help-form">
         <label htmlFor="name">Nombre completo</label>
         <input type="text" id="name" name="name" required />
 
