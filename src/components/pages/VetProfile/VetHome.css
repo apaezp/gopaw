@@ -1,39 +1,35 @@
-.vetHomeContainer{
-    background-image: url("../../assets/img/vethome.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    height: 100%;
+body {
+    margin: 0px;
+  }
+  
+  video {
+    object-fit: cover;
     width: 100%;
-    background-color: rgb(253, 253, 253);
-    
-}
-
-.vetTitle > h1 {
+    height: 100vh;
+    position: fixed;
+    z-index: -1;
+  }
+  
+  .vetHomeContainer{     
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height:100%;   
+  }   
+  
+  .vetTitle {
     color: #f5f0f0;
     font-size: 30px;   
     margin-left: 50px;
     margin-right: 50px;
+    margin-top: 0px;    
     font-family: 'Cinzel', serif;
     justify-content:center;
     align-items: center;    
-}
-.vetHomeButtons{
-    display: flex;
-    flex-direction: row;
-    border-radius: 5px;
-    align-items: center;
-    justify-content: center;
-    width: 25%;
-    height: 20%;
-    margin: 0rem auto;
-}
-.buttonLoginVet{
-    display: flex;
-    margin: 1.5rem;
-    padding: 0.5rem;
-}
-.buttonMostrarPerfil{
-    margin: 1.5rem;
-    padding: 0.5rem;
-}
+  } 
+
+ .searchContainer {
+    height: 100%;
+    width: 100%;    
+  }
+   
