@@ -12,11 +12,14 @@ export const ModificarPerfil = () => {
     email: "",
     phone: "",
     image: "",
+    password: "",
+    confirmPassword: "",
   };
   
   const [formData, setFormData] = useState(initialFormData);
   
   const handleChange = (e) => {
+    console.log(formData)
     const { name, value } = e.target;
     setFormData((prev) => {
       return { ...prev, [name]: value };
@@ -25,6 +28,7 @@ export const ModificarPerfil = () => {
   
   const handleSubmit = (e) => {
     e.preventDefault();
+    
   };
   
   const clearForm = () => {
@@ -33,25 +37,37 @@ export const ModificarPerfil = () => {
   
   const changeProfile = async () => {
     const id = localStorage.getItem("id");
-    const urlServer = "https://backendgopaw-production.up.railway.app";
+    const urlServer = "http://localhost:8080";
     const endpoint = `/editveterinary/:${id}`;
-    const { veterinary_name, phone, email, image } = formData;
-
+    const { veterinary_name, phone, email, image, password, confirmPassword } = formData;
     const newVetData = {id, veterinary_name, phone, email, image}
+
+    const errorMsg = (!password || !confirmPassword) ? "Contraseñas no coinciden" :
+    (!veterinary_name || !phone || !email || !password || !confirmPassword) ? "Por favor completa todos los campos." :
+    "";
+
+    if (errorMsg) {
+    alert(errorMsg);
+    return;
+    }
+
     try {
       const response = await axios.put(urlServer + endpoint, newVetData);
       console.log(response)
       alert("Usuario modificado exitosamente😀");
-      viewProfile(id);
+
+      changePass(id, password);
+      viewProfile(id);  
       clearForm(); // Limpiar el formulario después de enviar los datos
     } catch ({ response: { data: message } }) {
       alert(message + " 🙁");
       console.log(message);
     }
   };
-  
+
+
   const viewProfile = async (id) => {
-    const urlServerGET = "https://backendgopaw-production.up.railway.app";
+    const urlServerGET = "http://localhost:8080";
     const endpointGET = `/veterinary/${id}`
   
     const response = await axios.get(urlServerGET + endpointGET, {
@@ -64,6 +80,22 @@ export const ModificarPerfil = () => {
       console.error("Error al obtener datos del perfil del veterinario.");
     }
   };
+  const changePass = async (id, password) => {
+    const urlServer = "http://localhost:8080";
+    const endpoint = `/editveterinarypassword/${id}`
+  
+    
+    try {
+      const response = await axios.put(urlServer + endpoint, {id, password})
+       alert("Contraseña modificada correctamente");
+       console.log(response);
+
+    } catch ({ response: { data: message } }) {
+      alert(message + " 🙁");
+      console.log(message);
+    }
+  };
+  
   return (
     <div className="tab-pane" id="edit">
       <form onSubmit={handleSubmit}>
@@ -189,6 +221,7 @@ export const ModificarPerfil = () => {
             <input
               className="form-control"
               type="password"
+              name="password"
               onChange={handleChange}
             />
           </div>
@@ -201,6 +234,7 @@ export const ModificarPerfil = () => {
             <input
               className="form-control"
               type="password"
+              name="confirmPassword"
               onChange={handleChange}
             />
           </div>
