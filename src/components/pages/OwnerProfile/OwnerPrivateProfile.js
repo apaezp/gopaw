@@ -9,7 +9,7 @@ import axios from "axios";
 function OwnerPrivateProfile() {
   const navigate = useNavigate();
   const [authState, setAuthState] = useContext(AuthContext);
-  const { id } = authState;
+  const { id, token } = authState;
 
   const [showInfo, setShowInfo] = useState(false);
   const arrayTypes = ["Perro", "Gato", "Exotico", "Ave"];
@@ -25,7 +25,7 @@ function OwnerPrivateProfile() {
 
 
   const showProfile = () => {
-    if (authState) {
+    if (token) {
       setShowInfo(true);
       getVetList();
     } else {
