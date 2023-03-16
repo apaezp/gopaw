@@ -37,7 +37,7 @@ export const ModificarPerfil = () => {
   
   const changeProfile = async () => {
     const id = localStorage.getItem("id");
-    const urlServer = "http://localhost:8080";
+    const urlServer = "https://backendgopaw-production.up.railway.app";
     const endpoint = `/editveterinary/:${id}`;
     const { veterinary_name, phone, email, image, password, confirmPassword } = formData;
     const newVetData = {id, veterinary_name, phone, email, image}
@@ -67,7 +67,7 @@ export const ModificarPerfil = () => {
 
 
   const viewProfile = async (id) => {
-    const urlServerGET = "http://localhost:8080";
+    const urlServerGET = "https://backendgopaw-production.up.railway.app";
     const endpointGET = `/veterinary/${id}`
   
     const response = await axios.get(urlServerGET + endpointGET, {
@@ -81,7 +81,7 @@ export const ModificarPerfil = () => {
     }
   };
   const changePass = async (id, password) => {
-    const urlServer = "http://localhost:8080";
+    const urlServer = "https://backendgopaw-production.up.railway.app";
     const endpoint = `/editveterinarypassword/${id}`
   
     
