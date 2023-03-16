@@ -4,12 +4,12 @@ import "react-calendar/dist/Calendar.css";
 
 function Calendario() {
   const [value, setValue] = useState(new Date());
-
+  const myDate = value.toLocaleDateString("es-CL")
   return (
     <div>
       <Calendar onChange={setValue} value={value} />
       {
-        console.log(value.toLocaleDateString("es-CL")) //valor de la fecha seleccionada para guardar en BD
+        console.log(myDate) //valor de la fecha seleccionada para guardar en BD
       }
     </div>
   );
