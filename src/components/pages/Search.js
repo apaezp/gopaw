@@ -5,8 +5,10 @@ import './Search.css';
 
 function Search() {
   const [search, setSearch] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
-  const [reviewResults, setReviewResults] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);  
+  const [index, setIndex] = useState(0);
+  const [vetInfo, setVetInfo] = useState([]);
+  const [reviews, setReviews] = useState([]);
 
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -14,27 +16,29 @@ function Search() {
     if (search === '') {
       alert('Please enter a name');
       return;
-    } else {
-      const urlServer = 'https://backendgopaw-production.up.railway.app';
-      const endpoint = `/veterinarys?name=${search}`;
-      try {
-        const { data } = await axios.get(urlServer + endpoint);
-        setSearchResults(data);
-      } catch ({ response: { data: message } }) {
-        alert(message + ' 🙁');
-        console.log(message);
-      }
+    }
+
+    const urlServer = 'https://backendgopaw-production.up.railway.app';
+    const endpoint = `/veterinarys?name=${search}`;
+
+    try {
+      const { data } = await axios.get(urlServer + endpoint);
+      setSearchResults(data);
+    } catch ({ response: { data: message } }) {
+      alert(message + ' 🙁');
+      console.log(message);
     }
 
     setSearch('');
   };
 
-  const handleReviewSearch = async (veterinaryName) => {
+  const handleReviewSearch = async (veterinary_id) => {
     const urlServer = 'https://backendgopaw-production.up.railway.app';
-    const endpoint = `/reviews?vet_name=${veterinaryName}`;
+    const endpoint = `/reviews?veterinary_id=${veterinary_id}`;
+
     try {
       const { data } = await axios.get(urlServer + endpoint);
-      setReviewResults(data);
+      setReviews(data);
     } catch ({ response: { data: message } }) {
       alert(message + ' 🙁');
       console.log(message);
@@ -44,6 +48,9 @@ function Search() {
   const searchResult = searchResults.find(({ veterinary_name }) =>
     veterinary_name.toLowerCase().includes(search.toLowerCase())
   );
+
+  const filteredReviews = reviews.filter((review) => review.veterinary_id === vetInfo[index].id);
+  const reviewContent = filteredReviews.length > 0 ? filteredReviews[0].content : '';
 
   return (
     <div className="search-card-container">
@@ -76,7 +83,11 @@ function Search() {
             <h4 className="review">{searchResult.review}</h4>
             <button
               className="btn-reviews"
-              onClick={() => handleReviewSearch(searchResult.veterinary_name)}
+              onClick={() => {
+                handleReviewSearch(searchResult.id);
+                setIndex(0);
+                setVetInfo([searchResult]);
+              }}
             >
               See reviews
             </button>
@@ -84,14 +95,13 @@ function Search() {
         </div>
       )}
 
-      {reviewResults.length > 0 && (
+      {reviews.length > 0 && (
         <div className="reviewResults">
           <h3>Reviews:</h3>
           <ul>
-            {reviewResults.map((review) => (
+            {reviews.map((review) => (
               <li key={review.id}>
-                <p>{review.comment}</p>
-                <p>{review.rating}</p>
+                <h4>{review.content}</h4>
               </li>
             ))}
           </ul>
@@ -100,5 +110,6 @@ function Search() {
     </div>
   );
 }
+
 
 export default Search;
