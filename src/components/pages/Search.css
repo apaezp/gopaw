@@ -24,40 +24,42 @@
     margin-top: 10px;
   }
   
+  .cardContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    
+  }
   .cardVeterinary {
     display: flex;
-    flex: 1;
     border-radius: 5px;
-    margin: 10px;
-    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
   }
   
-  .imgCardVet {
+  /* .imgCardVet {
     width: 300px;
     height: 100%;
     background-color: rgb(17, 30, 38);
     border-radius: 5px 0 0 5px;
     margin-right: 10px;
-  }
+  } */
   
-  .cardImgVet {
+  /* .cardImgVet {
     height: 100%;
     width: 100%;
     object-fit: cover;
     border-radius: 5px 0 0 5px;
-  }
+  } */
   
   .cardInfoVet {
-    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 1em;
     color: white;
     font-family: 'Cinzel', serif;
-    background-color: rgb(36, 95, 29);
+    background-color: rgb(33, 114, 24);
     border-bottom-left-radius: 2.5%;
     border-bottom-right-radius: 2.5%;
     font-size: 16px;
+    margin: 1rem;
   }

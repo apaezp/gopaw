@@ -10,10 +10,11 @@ function VetHome() {
       <div className="vetHomeContainer"> 
       <video src={Video} autoPlay loop muted />
       <div>
-         <h1 className="vetTitle">Bienvenido a la pagina de veterinarios, aqui podras encontrar a tu veterinario favorito</h1>
+         <h1  className="vetTitle pt-4">Bienvenido a la pagina de veterinarios, aqui podras encontrar a tu veterinario favorito</h1>
        </div>        
-        <div className="searchContainer">        
+        <div className="searchContainer pb-5">        
          <Search /> 
+         
         </div>
         </div>       
       <Footer />
