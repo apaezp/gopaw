@@ -1,6 +1,39 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useContext, useEffect, useState } from 'react'
+import { AuthContext } from '../GlobalStates';
 
 export const PerfilCitas = () => {
+
+
+  const [authState] = useContext(AuthContext);
+  const [appointmentsData, setAppointmentsData] = useState([]);
+  const { id } = authState;
+
+  console.log(id)
+
+  const viewAppointments = async (id) => {
+    const urlServerGET = "https://backendgopaw-production.up.railway.app";
+    const endpointGET = `/veterinaryappointments/${id}`
+
+    
+      const response = await axios.get(urlServerGET + endpointGET, {
+        params: { id },
+      });
+
+    if (response && response.data) {
+      console.log(response);
+      setAppointmentsData(response.data);
+      
+    } else {
+      alert("No se pudo obtener los appointments del vet.");
+    }
+  };
+
+  useEffect(() => {
+    viewAppointments(id);
+    console.log(appointmentsData);
+  }, []);
+
   return (
     <>
     <div className="tab-pane" id="messages">
@@ -14,34 +47,18 @@ export const PerfilCitas = () => {
     </div>
   </div>
     <table className="table table-hover table-striped">
-        <tbody>                                    
-            <tr>
-                <td>
-                   <span className="float-right font-weight-bold pl-3">Fecha: 28.02.23</span> 
-                   <button type="button" className="btn btn-danger float-right" >Cancelar</button>
-                   <button type="button" className="btn btn-success float-right" >Aceptar</button>
-                   <p>Dueño: Andrés Muñoz</p>
-                   <p>Mascota: Zeus</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                   <span className="float-right font-weight-bold pl-3">Fecha: 25.03.23</span> 
-                   <button type="button" className="btn btn-danger float-right" >Cancelar</button>
-                   <button type="button" className="btn btn-success float-right" >Aceptar</button>
-                   <p>Dueño: Matías Briceño</p>
-                   <p>Mascota: Odin</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                   <span className="float-right font-weight-bold pl-3">Fecha: 29.03.23</span> 
-                   <button type="button" className="btn btn-danger float-right" >Cancelar</button>
-                   <button type="button" className="btn btn-success float-right" >Aceptar</button>
-                   <p>Dueño: Andrea Paez</p>
-                   <p>Mascota: Charmander</p>
-                </td>
-            </tr>
+        <tbody>             
+        {appointmentsData.map((appointment) => (
+          <tr key={appointment.id}>
+          <td>
+             <span className="float-right font-weight-bold pl-3">Fecha: {appointment.date}</span> 
+             <button type="button" className="btn btn-danger float-right" >Cancelar</button>
+             <button type="button" className="btn btn-success float-right" >Aceptar</button>
+             <p>Dueño: Andrés Muñoz</p>
+             <p>Mascota: Zeus</p>
+          </td>
+      </tr>
+        ))}
         </tbody> 
     </table>
 </div>
