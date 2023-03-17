@@ -9,15 +9,16 @@ function VetHome() {
     <>
       <div className="vetHomeContainer"> 
       <video src={Video} autoPlay loop muted />
-      <div>
+        <div>
          <h1  className="vetTitle pt-4">Bienvenido a la pagina de veterinarios, aqui podras encontrar a tu veterinario favorito</h1>
-       </div>        
+        </div>        
         <div className="searchVetHome pb-5">        
-         <Search /> 
-         
+          <Search /> 
         </div>
-        </div>       
-      <Footer />
+           <Footer />
+        </div> 
+              
+      
     </>
   );
 }

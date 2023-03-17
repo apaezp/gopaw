@@ -64,6 +64,24 @@
     margin: 1rem;
   }
 
+  .allCards{
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 3rem;
+  }
+  .allCards .card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: 'Cinzel', serif;
+    background-color: rgb(33, 114, 24);
+    border-bottom-left-radius: 2.5%;
+    border-bottom-right-radius: 2.5%;
+    font-size: 16px;
+    margin: 1rem;
+  }
 
   .inputName{
     width: auto;
@@ -71,8 +89,28 @@
     flex-direction: row;
     justify-content: center;
   }
+  .ReactModal__Body--open{
+    background-color: transparent;
+  }
   .modalReviews{
     margin: 150px 200px;
     border: solid 1px black;
+    background-color: rgb(177, 177, 177);
     
+  }
+
+  .buttonContainer{
+    display: flex;
+    justify-content: center;
+  }
+
+  .btnModal{
+    color: rgb(136  , 136  , 136  );
+    border-radius: 5px;
+    padding: 5px;
+    border: none;
+    width: auto;
+    font-family: "Cinzel", serif;
+    font-size: 20px;
+    cursor: pointer;
   }
