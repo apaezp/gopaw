@@ -20,9 +20,26 @@ export const PerfilCitas = () => {
 
     if (response && response.data) {
       setAppointmentsData(response.data);
-      
+      console.log(response.data)
     } else {
       alert("No se pudo obtener los appointments del vet.");
+    }
+  };
+
+  const DeleteAppointment = async (id) => {
+    try {
+      const urlServerDELETE = "https://backendgopaw-production.up.railway.app";
+      const endpointDELETE = `/deleteappointment/${id}`;
+  
+      await axios.delete(urlServerDELETE + endpointDELETE, {
+        params: { id },
+      });
+  
+      const updatedAppointments = appointmentsData.filter((appointment) => appointment.id !== id);
+      setAppointmentsData(updatedAppointments);
+      viewAppointments(id);
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -45,16 +62,16 @@ export const PerfilCitas = () => {
     <table className="table table-hover table-striped">
         <tbody>             
         {appointmentsData.map((appointment, index) => (
-          <tr key={index}>
-          <td>
-             <span className="float-right font-weight-bold pl-3">Fecha: {appointment.date}</span> 
-             <button type="button" className="btn btn-danger float-right" >Cancelar</button>
-             <button type="button" className="btn btn-success float-right" >Aceptar</button>
-             <p>Dueño: {appointment.owner_name}</p>
-             <p>Mascota: {appointment.pet_name}</p>
-          </td>
-      </tr>
-        ))}
+            <tr key={index}>
+              <td>
+                <span className="float-right font-weight-bold pl-3">Fecha: {appointment.date}</span> 
+                <button type="button" className="btn btn-danger float-right" onClick={() => DeleteAppointment(appointment.pet_id)}>Eliminar</button>
+                <button type="button" className="btn btn-success float-right" >Aceptar</button>
+                <p>Dueño: {appointment.owner_name}</p>
+                <p>Mascota: {appointment.pet_name}</p>
+              </td>
+            </tr>
+          ))}
         </tbody> 
     </table>
 </div>
