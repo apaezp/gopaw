@@ -9,10 +9,8 @@ export const PerfilCitas = () => {
   const [appointmentsData, setAppointmentsData] = useState([]);
   const { id } = authState;
 
-  console.log(id)
-
   const viewAppointments = async (id) => {
-    const urlServerGET = "https://backendgopaw-production.up.railway.app";
+    const urlServerGET = "http://localhost:8080";
     const endpointGET = `/veterinaryappointments/${id}`
 
     
@@ -21,7 +19,6 @@ export const PerfilCitas = () => {
       });
 
     if (response && response.data) {
-      console.log(response);
       setAppointmentsData(response.data);
       
     } else {
@@ -31,7 +28,6 @@ export const PerfilCitas = () => {
 
   useEffect(() => {
     viewAppointments(id);
-    console.log(appointmentsData);
   }, []);
 
   return (
@@ -48,14 +44,14 @@ export const PerfilCitas = () => {
   </div>
     <table className="table table-hover table-striped">
         <tbody>             
-        {appointmentsData.map((appointment) => (
-          <tr key={appointment.id}>
+        {appointmentsData.map((appointment, index) => (
+          <tr key={index}>
           <td>
              <span className="float-right font-weight-bold pl-3">Fecha: {appointment.date}</span> 
              <button type="button" className="btn btn-danger float-right" >Cancelar</button>
              <button type="button" className="btn btn-success float-right" >Aceptar</button>
-             <p>Dueño: Andrés Muñoz</p>
-             <p>Mascota: Zeus</p>
+             <p>Dueño: {appointment.owner_name}</p>
+             <p>Mascota: {appointment.pet_name}</p>
           </td>
       </tr>
         ))}
