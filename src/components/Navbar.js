@@ -1,13 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Button } from './Button';
 import { Link } from 'react-router-dom';
 import { FaPaw } from 'react-icons/fa';
+import { AuthContext } from "../GlobalStates";
 import './Navbar.css';
 
 function Navbar() {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
+  const [authState] = useContext(AuthContext);
+  const {account_type} = authState
 
+
+  
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
 
@@ -46,6 +51,15 @@ function Navbar() {
               </Link>
             </li>
             <li className='nav-item'>
+            {account_type === "veterinary" ? (
+              <Link
+                to='/pages/VetProfile/VetPrivateProfile'
+                className='nav-links'
+                onClick={click}
+              >
+                Mi Perfil
+              </Link>
+            ) : (
               <Link
                 to='/pages/VetProfile/VetHome'
                 className='nav-links'
@@ -53,6 +67,7 @@ function Navbar() {
               >
                 Veterinarios
               </Link>
+            )}
             </li>
             <li className='nav-item'>
               <Link
