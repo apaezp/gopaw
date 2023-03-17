@@ -116,7 +116,7 @@ function VetPrivateProfile() {
                <li className="nav-item">
                  <button
                    type="button"
-                   class="btn btn-primary"
+                   className="btn btn-primary"
                    onClick={() => setActiveButton('Citas')}
                  >
                    Mis citas <span className="hidden-xs"></span>
@@ -125,7 +125,7 @@ function VetPrivateProfile() {
                <li className="nav-item">
                  <button
                    type="button"
-                   class="btn btn-primary"
+                   className="btn btn-primary"
                    onClick={() => setActiveButton('Reseña')}
                  >
                    Reseñas <span className="hidden-xs"></span>
@@ -134,7 +134,7 @@ function VetPrivateProfile() {
                <li className="nav-item">
                  <button
                    type="button"
-                   class="btn btn-primary"
+                   className="btn btn-primary"
                    onClick={() => setActiveButton('Contrasena')}
                  >
                    Modificar Perfil <span className="hidden-xs"></span>

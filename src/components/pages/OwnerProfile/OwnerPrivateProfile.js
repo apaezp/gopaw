@@ -41,6 +41,7 @@ function OwnerPrivateProfile() {
     const urlServer = "https://backendgopaw-production.up.railway.app";
     const { data } = await axios.get(urlServer + endpoint);
     setPetList(data);
+    console.log(data)
   };
 
   const getVetList = async () => {
@@ -98,7 +99,9 @@ function OwnerPrivateProfile() {
   const goVetHome = () => {
     navigate("/pages/VetProfile/VetHome")
   }
-
+  const goAppointment = () => {
+    navigate("/Appointment")
+  }
   useEffect(() => {
     showProfile();
   }, []);
@@ -122,9 +125,15 @@ function OwnerPrivateProfile() {
                       <h4>{authState.owner_name}</h4>
                       <button
                         className="btn btn-outline-primary"
+                        onClick={() => goAppointment()}
+                      >
+                        Agendar Visita
+                      </button>
+                      <button
+                        className="btn btn-outline-primary"
                         onClick={() => logOut()}
                       >
-                        Log Out
+                        Salir
                       </button>
                     </div>
                   </div>
@@ -185,7 +194,6 @@ function OwnerPrivateProfile() {
                     <div className="col-sm-3">
                       <button onClick={()=> goVetHome()}>Ver Veterinarios</button>
                     </div>
-                    
                   </div>
                 </div>
                 <hr />

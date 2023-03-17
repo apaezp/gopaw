@@ -17,6 +17,7 @@ import TermsAndConditions from "./components/pages/TermsAndConditions";
 import ContactPage from "./components/pages/ContactPage";
 import ContactInfo from "./components/pages/ContactInfo";
 import ContactHelp from "./components/pages/ContactHelp";
+import Appointment from "./components/pages/OwnerProfile/Appointment"
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
             <Route path="/ContactPage" element={<ContactPage />} />
             <Route path="/ContactInfo" element={<ContactInfo />} />
             <Route path="/ContactHelp" element={<ContactHelp />} />
+            <Route path="/Appointment" element={<Appointment />} />
             <Route path="pages/VetProfile/VetHome" element={<VetHome />} />
           
             <Route
