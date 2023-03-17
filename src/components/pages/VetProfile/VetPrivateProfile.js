@@ -10,7 +10,7 @@ function VetPrivateProfile() {
   const navigate = useNavigate();
   const [activeButton, setActiveButton] = useState('Inicio');
   const [showInfo, setShowInfo] = useState(false)
-  const [authState] = useContext(AuthContext);
+  const [authState, setAuthState] = useContext(AuthContext);
   const {veterinary_name, email, phone, token} = authState;
 
   const info = () => {
@@ -21,6 +21,15 @@ function VetPrivateProfile() {
       navigate("/pages/login");
     };
   };
+  const logOut = () => {
+    setAuthState("");
+    localStorage.removeItem('token');
+    navigate("/");
+  };
+
+  const goHome = () => {
+    navigate("/")
+  }
  useEffect(() => {
     info();
  }, [])
@@ -73,12 +82,22 @@ function VetPrivateProfile() {
                 </ul>
                 <div className="row text-center mt-4">
                   <div className="col p-2">
-                    <h4 className="mb-1 line-height-5">154</h4>
-                    <small className="mb-0 font-weight-bold">Citas</small>
+                  <button
+                   type="button"
+                   className="btn btn-primary"
+                   onClick={() => goHome()}
+                 >
+                   Volver al inicio <span className="hidden-xs"></span>
+                 </button>
                   </div>
                   <div className="col p-2">
-                    <h4 className="mb-1 line-height-5">5</h4>
-                    <small className="mb-0 font-weight-bold">Reseñas</small>
+                  <button
+                   type="button"
+                   className="btn btn-primary"
+                   onClick={() => logOut()}
+                 >
+                   Salir<span className="hidden-xs"></span>
+                 </button>
                   </div>
                 </div>
               </div>
