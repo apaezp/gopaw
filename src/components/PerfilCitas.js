@@ -10,7 +10,7 @@ export const PerfilCitas = () => {
   const { id } = authState;
 
   const viewAppointments = async (id) => {
-    const urlServerGET = "http://localhost:8080";
+    const urlServerGET = "https://backendgopaw-production.up.railway.app";
     const endpointGET = `/veterinaryappointments/${id}`
 
     
