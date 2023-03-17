@@ -8,8 +8,8 @@ import axios from "axios";
 
 function OwnerPrivateProfile() {
   const navigate = useNavigate();
-  const [authState, setAuthState] = useContext(AuthContext);
-  const { id, token } = authState;
+  const [authState, setAuthState] = (useContext(AuthContext));
+  const {account_type, id, token } = authState;
 
   const [showInfo, setShowInfo] = useState(false);
   const arrayTypes = ["Perro", "Gato", "Exotico", "Ave"];
@@ -25,11 +25,14 @@ function OwnerPrivateProfile() {
 
   const [petList, setPetList] = useState([]);
 
+  console.log(authState.account_type)
+
   const showProfile = () => {
-    if (token) {
+    if (token && authState.account_type === "owner") {
       setShowInfo(true);
       getVetList();
       getPetList();
+      
     } else {
       setShowInfo(false);
       navigate("/pages/login");
@@ -41,7 +44,7 @@ function OwnerPrivateProfile() {
     const urlServer = "https://backendgopaw-production.up.railway.app";
     const { data } = await axios.get(urlServer + endpoint);
     setPetList(data);
-    console.log(data)
+    // console.log(data)
   };
 
   const getVetList = async () => {

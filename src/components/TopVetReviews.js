@@ -22,13 +22,13 @@ const TopVetReviews = () => {
   const getRandomPerson = () => {
     let randomIndex = getRandomIntInclusive(0, vetInfo.length - 1);
     if (randomIndex === index) {
-      randomIndex = index + 1;
+      randomIndex = index - 1;
     }
     setIndex(randomIndex);
     const filteredReviews = reviews.filter(
       (item) => item.veterinary_id === vetInfo[index].id
     );
-    setFiltered(filteredReviews);
+
   
   };
 
@@ -37,6 +37,7 @@ const TopVetReviews = () => {
       (item) => item.veterinary_id === vetInfo[index].id
     );
     setFiltered(filteredReviews);
+    getRandomPerson();
   }
 
   const getReviewData = async () => {
@@ -63,7 +64,6 @@ const TopVetReviews = () => {
   useEffect(() => {
     getVets();
     getReviewData();
-    getRandomPerson();
     filterReviews()
   }, []);
 

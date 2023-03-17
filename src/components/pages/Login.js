@@ -56,7 +56,7 @@ function Login() {
       data[0].token = token
       
       setAuthState(data[0]);
-      console.log(data[0])
+      // console.log(data[0])
 
     } catch ({ response: { data: message } }) {
       alert(message + " 🙁");
