@@ -13,7 +13,7 @@ export const PerfilReseña = () => {
   console.log(id)
 
   const viewReview = async (id) => {
-    const urlServerGET = "http://localhost:8080";
+    const urlServerGET = "https://backendgopaw-production.up.railway.app";
     const endpointGET = `/review/${id}`
 
     

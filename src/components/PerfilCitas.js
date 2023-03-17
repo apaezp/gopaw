@@ -12,7 +12,7 @@ export const PerfilCitas = () => {
   console.log(id)
 
   const viewAppointments = async (id) => {
-    const urlServerGET = "http://localhost:8080";
+    const urlServerGET = "https://backendgopaw-production.up.railway.app";
     const endpointGET = `/veterinaryappointments/${id}`
 
     
