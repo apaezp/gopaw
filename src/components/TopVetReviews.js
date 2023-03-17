@@ -59,7 +59,7 @@ const TopVetReviews = () => {
   return (
     <article className="review">
       <div>
-        <h1>Reviews de Veterinarios</h1>
+        <h1 className="title">Reviews de Veterinarios</h1>
       </div>
       <div className="img-container">
         {/* <img src={image || 'https://via.placeholder.com/150'} alt={id} className="person-img" /> */}
