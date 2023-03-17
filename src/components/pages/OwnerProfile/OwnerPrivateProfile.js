@@ -23,15 +23,24 @@ function OwnerPrivateProfile() {
   const [vetList, setVetList] = useState([]);
   const [vetId, setVetId] = useState();
 
+  const [petList, setPetList] = useState([]);
 
   const showProfile = () => {
     if (token) {
       setShowInfo(true);
       getVetList();
+      getPetList();
     } else {
       setShowInfo(false);
       navigate("/pages/login");
     }
+  };
+
+  const getPetList = async () => {
+    const endpoint = `/pet/${id}`;
+    const urlServer = "https://backendgopaw-production.up.railway.app";
+    const { data } = await axios.get(urlServer + endpoint);
+    setPetList(data);
   };
 
   const getVetList = async () => {
@@ -85,6 +94,10 @@ function OwnerPrivateProfile() {
     setAuthState("");
     navigate("/");
   };
+
+  const goVetHome = () => {
+    navigate("/pages/VetProfile/VetHome")
+  }
 
   useEffect(() => {
     showProfile();
@@ -148,9 +161,116 @@ function OwnerPrivateProfile() {
                     </div>
                   </div>
                 </div>
+                <hr />
+                <div className="card-body">
+                  <div className="row">
+                    <div className="col-sm-3">
+                      <h6 className="mb-0">Mascotas:</h6>
+                    </div>
+                    <div className="col-sm-9 text-secondary">
+                      <ul>
+                        {petList.map((item) => (
+                          <li key={item.id}>
+                            Nombre: {item.pet_name}.
+                            <br></br>-Tipo: {item.type}.
+                            <br></br>-Nacimiento: {item.birth_date}.
+                            <br></br>-Veterinario: {item.veterinary_name}.
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                  <hr />
+                  <div className="row rowCalendar">
+                    <div className="col-sm-3">
+                      <button onClick={()=> goVetHome()}>Ver Veterinarios</button>
+                    </div>
+                    
+                  </div>
+                </div>
+                <hr />
+                <div className="card-body">
+                  <div className="card mb-3">
+                    <h6 className="boxTitle">Agregar Mascota</h6>
+                    <div className="card-body">
+                      <div className="row">
+                        <div className="col-sm-3">
+                          <h6 className="mb-0">Nombre</h6>
+                        </div>
+                        <div className="col-sm-9 text-secondary">
+                          <input
+                            type="text"
+                            id="petName"
+                            onChange={(e) => inputHandler(e)}
+                            value={petName}
+                          ></input>
+                        </div>
+                      </div>
+                      <hr />
+                      <div className="row">
+                        <div className="col-sm-3">
+                          <h6 className="mb-0">Tipo</h6>
+                        </div>
+                        <div className="col-sm-9 text-secondary">
+                          <select
+                            type="text"
+                            id="petType"
+                            onChange={(e) => inputHandler(e)}
+                          >
+                            <option>Selecciona</option>
+                            {arrayTypes.map((item) => (
+                              <option key={item}>{item}</option>
+                            ))}
+                          </select>
+                        </div>
+                      </div>
+                      <hr />
+                      <div className="row">
+                        <div className="col-sm-3">
+                          <h6 className="mb-0">Veterinario</h6>
+                        </div>
+                        <div className="col-sm-9 text-secondary">
+                          <select
+                            type="text"
+                            id="vetName"
+                            onChange={(e) => inputHandler(e)}
+                          >
+                            <option>Selecciona</option>
+                            {vetList.map((item) => (
+                              <option key={item.id}>
+                                {item.veterinary_name}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                      </div>
+                      <hr />
+                      <div className="row rowCalendar" >
+                        <div className="col-sm-3">
+                          <h6 className="mb-2">Fecha de nacimiento</h6>
+                        </div>
+                        <div className="col-sm-9 text-secondary">
+                          <Calendar
+                            onChange={setDate}
+                            value={birthDate}
+                            className="birthCalendar"
+                          />
+                        </div>
+                      </div>
+                      <hr />
+                      <div className="row">
+                        <div className="col-sm-3">
+                          <button type="submit" onClick={() => getPetData()}>
+                            Registrar
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-            <div className="col-md-8">
+            {/* <div className="col-md-8">
               <div className="card mb-3">
                 <h6 className="boxTitle">Agregar Mascota</h6>
                 <div className="card-body">
@@ -226,7 +346,7 @@ function OwnerPrivateProfile() {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       )}
