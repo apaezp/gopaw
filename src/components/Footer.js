@@ -1,18 +1,15 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Footer.css';
 import { Button } from './Button';
-import { FaPaw, FaTiktok} from 'react-icons/fa';
-import {AiOutlineInstagram, AiOutlineYoutube} from 'react-icons/ai';
-import {FiFacebook, FiTwitter} from 'react-icons/fi';
-import { useState, useEffect } from 'react';
-
+import { FaPaw, FaTiktok } from 'react-icons/fa';
+import { AiOutlineInstagram, AiOutlineYoutube } from 'react-icons/ai';
+import { FiFacebook, FiTwitter } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
-
 
 function Footer() {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
-  
+  const [alert, setAlert] = useState(false);
 
   const showButton = () => {
     if (window.innerWidth <= 960) {
@@ -27,6 +24,16 @@ function Footer() {
   }, []);
 
   window.addEventListener('resize', showButton);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setAlert(true);  
+  }
+
+  const handleAlertClose = () => {
+    setAlert(false);
+  }
+
   return (
     <div className='footer-container'>
       <section className='footer-subscription'>
@@ -37,7 +44,7 @@ function Footer() {
           Puedes cancelar tu suscripcion en cualquier momento.
         </p>
         <div className='input-areas'>
-          <form>
+          <form onSubmit={handleSubmit}>
             <input
               className='footer-input'
               name='email'
@@ -46,6 +53,11 @@ function Footer() {
             />
             <Button buttonStyle='btn--outline'>Suscribirse</Button>
           </form>
+          {alert && (
+            <p className='footer-alert' onClick={handleAlertClose}>
+              ¡Te has suscrito exitosamente a GoPaw!
+            </p>
+          )}
         </div>
       </section>
       <div className='footer-links'>

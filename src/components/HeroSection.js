@@ -27,7 +27,7 @@ function HeroSection() {
           <h1>“¡Bienvenido {name} a nuestra página de contacto para veterinarios y dueños de mascotas!”</h1>
           <p> Esto es GoPaw!</p>
           <div className="hero-btns">
-          <Link to='/pages/ContactPage'>
+          <Link to='/ContactPage'>
             <Button
               className="btns"
               buttonStyle="btn--outline"
