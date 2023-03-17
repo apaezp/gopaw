@@ -1,7 +1,8 @@
 .contact-info-container {
     margin-top: 50px;
-    height: 60%;
+    height: 100%;
     width: 100%;
+    font-family: "Cinzel", serif;
   }
   
   .contact-info-container h2 {

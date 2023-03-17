@@ -3,20 +3,21 @@
     padding: 50px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    font-family: "Cinzel", serif;
   }
   
-  h1 {
+  .termsAndConditions h1 {
     font-size: 2rem;
     margin-bottom: 30px;
     text-align: center;
   }
   
-  h2 {
+  .termsAndConditions h2 {
     font-size: 1.5rem;
     margin-top: 30px;
   }
   
-  p {
+  .termsAndConditions p {
     margin-top: 10px;
     line-height: 1.5;
   }

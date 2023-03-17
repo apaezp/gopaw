@@ -3,14 +3,16 @@
     margin: 0 auto;
     padding: 20px;
     text-align: center;
+    font-family: "Cinzel", serif;
   }
   
-  h1 {
-    font-size: 3rem;
+  .ContactContainer h1 {
+    font-size: 2rem;
     margin-bottom: 40px;
+    margin-top: 20px;
   }
   
-  p {
+  .ContactContainer p {
     font-size: 1.2rem;
     line-height: 1.5;
     margin-bottom: 20px;
