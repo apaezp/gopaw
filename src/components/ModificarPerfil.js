@@ -19,7 +19,6 @@ export const ModificarPerfil = () => {
   const [formData, setFormData] = useState(initialFormData);
   
   const handleChange = (e) => {
-    console.log(formData)
     const { name, value } = e.target;
     setFormData((prev) => {
       return { ...prev, [name]: value };
@@ -70,7 +69,6 @@ export const ModificarPerfil = () => {
       params: { id },
     });
     if (response && response.data) {
-      console.log(response.data[0]);
       setAuthState(response.data[0]);
     } else {
       console.error("Error al obtener datos del perfil del veterinario.");
@@ -84,7 +82,6 @@ export const ModificarPerfil = () => {
     try {
       const response = await axios.put(urlServer + endpoint, {id, password})
        alert("Contraseña modificada correctamente");
-       console.log(response);
 
     } catch ({ response: { data: message } }) {
       alert(message + " 🙁");

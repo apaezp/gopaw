@@ -10,8 +10,6 @@ export const PerfilReseña = () => {
   const [reviewData, setReviewData] = useState([]);
   const { id } = authState;
 
-  console.log(id)
-
   const viewReview = async (id) => {
     const urlServerGET = "https://backendgopaw-production.up.railway.app";
     const endpointGET = `/review/${id}`
@@ -22,7 +20,6 @@ export const PerfilReseña = () => {
       });
 
     if (response && response.data) {
-      console.log(response);
       setReviewData(response.data);
       
     } else {
@@ -33,7 +30,6 @@ export const PerfilReseña = () => {
 
   useEffect(() => {
     viewReview(id);
-    console.log(reviewData);
   }, [])
   
 
