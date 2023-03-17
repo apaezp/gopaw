@@ -12,7 +12,7 @@ function VetHome() {
       <div>
          <h1  className="vetTitle pt-4">Bienvenido a la pagina de veterinarios, aqui podras encontrar a tu veterinario favorito</h1>
        </div>        
-        <div className="searchContainer pb-5">        
+        <div className="searchVetHome pb-5">        
          <Search /> 
          
         </div>

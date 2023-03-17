@@ -14,14 +14,14 @@
   }
   
   .btn-search {
-    width: 40px;
-    height: 40px;
+    color: rgb(136  , 136  , 136  );
     border-radius: 5px;
-    background-color: #0c0c0c;
-    color: #fff;
+    padding: 5px;
+    border: none;
+    width: auto;
+    font-family: "Cinzel", serif;
     font-size: 20px;
-    font-weight: bold;
-    margin-top: 10px;
+    cursor: pointer;
   }
   
   .cardContainer{
@@ -62,4 +62,17 @@
     border-bottom-right-radius: 2.5%;
     font-size: 16px;
     margin: 1rem;
+  }
+
+
+  .inputName{
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  .modalReviews{
+    margin: 150px 200px;
+    border: solid 1px black;
+    
   }
