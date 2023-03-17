@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { FaChevronLeft, FaChevronRight, FaQuoteRight } from "react-icons/fa";
 import "./TopVetReviews.css";
 import axios from "axios";
 
 const TopVetReviews = () => {
+  const navigate = useNavigate()
   const [index, setIndex] = useState(0);
   const [vetInfo, setVetInfo] = useState([]);
   const [reviews, setReviews] = useState([]);
-
-  const { id, veterinary_name, phone, review: { title, date, content } = {}} = vetInfo[index] || {};
-  
+  const [filtered, setFiltered] = useState([]);
+  const { veterinary_name, phone } = vetInfo[index] || {};
+  const reviewContent = filtered.length ? filtered[0].content : "";
 
   const getRandomIntInclusive = (min, max) => {
     min = Math.ceil(min);
@@ -23,38 +25,47 @@ const TopVetReviews = () => {
       randomIndex = index + 1;
     }
     setIndex(randomIndex);
+    const filteredReviews = reviews.filter(
+      (item) => item.veterinary_id === vetInfo[index].id
+    );
+    setFiltered(filteredReviews);
+  
   };
 
-  const filteredReviews = reviews.filter((review) => review.veterinary_id === vetInfo[index].id);
-  const reviewContent = filteredReviews.length > 0 ? filteredReviews[0].content : '';
-
+  const filterReviews = () => {
+    const filteredReviews = reviews.filter(
+      (item) => item.veterinary_id === vetInfo[index].id
+    );
+    setFiltered(filteredReviews);
+  }
 
   const getReviewData = async () => {
     const urlServer = "https://backendgopaw-production.up.railway.app";
     let endpoint = `/reviews`;
-    const response =  await axios.get(urlServer + endpoint);
+    const response = await axios.get(urlServer + endpoint);
 
-    const getReviews = response.data
+    const getReviews = response.data;
     setReviews(getReviews);
-   
-  }
-   console.log(reviews)
-
+  };
 
   const getVets = async () => {
     const urlServer = "https://backendgopaw-production.up.railway.app";
     let endpoint = `/veterinarys`;
     const vets = await axios.get(urlServer + endpoint);
-    const getVets = vets.data
-       setVetInfo(getVets);
-       
-    };
-     console.log(vetInfo)
-  
+    const getVets = vets.data;
+    setVetInfo(getVets);
+  };
+
+  const goVets = () => {
+    navigate("/pages/VetProfile/VetHome");
+  };
+
   useEffect(() => {
-    getVets()
-    getReviewData()
-  }, []); 
+    getVets();
+    getReviewData();
+    getRandomPerson();
+    filterReviews()
+  }, []);
 
   return (
     <article className="review">
@@ -69,9 +80,7 @@ const TopVetReviews = () => {
       </div>
       <h4 className="author">{veterinary_name}</h4>
       <p className="phone">{phone}</p>
-      {reviews.length > 1 && (
-      <h4>{reviewContent}</h4>
-      )}
+      {reviews.length > 1 && <h4>{reviewContent}</h4>}
       <div className="button-container">
         <button className="prev-btn" onClick={getRandomPerson}>
           <FaChevronLeft />
@@ -80,7 +89,7 @@ const TopVetReviews = () => {
           <FaChevronRight />
         </button>
       </div>
-      <button className="random-btn" onClick={getRandomPerson}>
+      <button className="random-btn" onClick={() => goVets()}>
         Más Reviews
       </button>
     </article>
