@@ -102,6 +102,10 @@ function OwnerPrivateProfile() {
   const goAppointment = () => {
     navigate("/Appointment")
   }
+
+  const goReview = (id) => {
+    navigate(`/Review/${id}`)
+  }
   useEffect(() => {
     showProfile();
   }, []);
@@ -183,7 +187,7 @@ function OwnerPrivateProfile() {
                             Nombre: {item.pet_name}.
                             <br></br>-Tipo: {item.type}.
                             <br></br>-Nacimiento: {item.birth_date}.
-                            <br></br>-Veterinario: {item.veterinary_name}.
+                            <br></br>-Veterinario: {item.veterinary_name}.{" "}<button className="" onClick={() => goReview(item.veterinary_id)}>Escribir Reseña</button>
                           </li>
                         ))}
                       </ul>

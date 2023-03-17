@@ -1,75 +1,74 @@
 import React, { Component } from "react";
 import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../../GlobalStates";
-import "./OwnerPrivateProfile.css";
-import Calendar from "react-calendar";
-import TimePicker from "react-time-picker";
+import "./Review.css";
 import axios from "axios";
 
-function OwnerPrivateProfile() {
+function Review() {
   const navigate = useNavigate();
   const [authState, setAuthState] = useContext(AuthContext);
   const { id, token } = authState;
   const [showInfo, setShowInfo] = useState(false);
-  const [petList, setPetList] = useState([]);
-  const [hourSelected, setHourSelected] = useState("10:00");
-  const [appoinDate, setDate] = useState(new Date());
-  const formatedAppointmenthDate = appoinDate.toLocaleDateString("es-CL");
 
-  const [vetId, setVetId] = useState();
-  const [petId, setPetId] = useState();
+  const [revTitle, setRevTitle] = useState("");
+  const [revContent, setRevContent] = useState("");
+  const [vetId, setVetId] = useState(0);
 
-  const showProfile = () => {
+  const getParams = useParams();
+  const getVetId = getParams.id;
+
+  const parseData = () => {
+    const formatInt = parseInt(getVetId);
+    setVetId(formatInt);
+  };
+
+
+  const showProfile =  () => {
     if (token) {
       setShowInfo(true);
-      getPetList();
+      parseData();
     } else {
       setShowInfo(false);
       navigate("/pages/login");
     }
   };
 
-  const getPetList = async () => {
-    const endpoint = `/pet/${id}`;
-    const urlServer = "https://backendgopaw-production.up.railway.app";
-    const { data } = await axios.get(urlServer + endpoint);
-    setPetList(data);
-    console.log(petList);
-  };
-
-  const inputHandler = (e) => {
+  const inputHandlerRev = (e) => {
     const { id, value } = e.target;
-    if (id === "petName") {
-      const result = petList.find((item) => item.pet_name === value);
-      const myPetId = result.id;
-      setPetId(myPetId);
+    if (id === "revTitle") {
+      setRevTitle(value);
+    }
+    if (id === "revContent") {
+      setRevContent(value);
     }
   };
 
-  const inputHandlerVet = (e) => {
-    const { id, value } = e.target;
-    if (id === "vetName") {
-      const result2 = petList.find((item) => item.veterinary_name === value);
-      const myVetId = result2.veterinary_id;
-      setVetId(myVetId);
-    }
-  };
+  const getReviewData = () => {
+    const myDate = new Date();
+    const formatDate = myDate.toLocaleString("es-CL")
+    // const [day, month, year] = [
+    //   myDate.getMonth(),
+    //   myDate.getDate(),
+    //   myDate.getFullYear(),
+    // ];
 
-  const getAppointmentData = () => {
-    const appointmentData = {
-      date: formatedAppointmenthDate,
-      pet_id: petId,
+    const review = {
+      date: formatDate,
+      title: revTitle,
+      content: revContent,
+      owner_id: id,
       veterinary_id: vetId,
-      hour: hourSelected,
     };
+    console.log(review);
+    navigate("/pages/OwnerProfile/OwnerPrivateProfile");
     axios
       .post(
-        "https://backendgopaw-production.up.railway.app/registerappointment",
-        appointmentData
+        "https://backendgopaw-production.up.railway.app/registerreview",
+        review
       )
       .then(() => {
-        alert("Reserva exitosa!");
+        alert("Reseña Enviada!");
       })
       .catch((error) => {
         alert(error);
@@ -86,63 +85,75 @@ function OwnerPrivateProfile() {
   };
 
   useEffect(() => {
-    showProfile();
+    showProfile()
+    ;
   }, []);
 
   return (
     <div className="containerOwnerPublicProfile">
-      {showInfo === true && (
-        <div className="main-body">
-          <div className="col-md-12 mb-3 d-flex flex-row ">
-            <div className="card m-2 col-md-6  d-flex  flex-row justify-content-center align-items-center">
-              <div className="card-body">
-                <div className="d-flex  flex-row justify-content-center align-items-center text-left">
-                  <img
-                    src="https://bootdey.com/img/Content/avatar/avatar7.png"
-                    alt="Admin"
-                    className="rounded-circle"
-                    width="150"
-                  />
-                  <div>
-                    <h4>{authState.owner_name}</h4>
-                    <h6>{authState.email}</h6>
-                    <h6>{authState.phone}</h6>
-                    <button
-                      className="btn btn-outline-primary"
-                      onClick={() => goBack()}
-                    >
-                      Volver
-                    </button>
-                    <button
-                      className="btn btn-outline-primary"
-                      onClick={() => logOut()}
-                    >
-                      Salir
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="card m-2 col-md-6">
-              <div className="card-body ">
-                <div className="">
-                  <div className="col-sm-12 text-secondary">
-                    <ul>
-                      {petList.map((item) => (
-                        <li key={item.id}>
-                          Nombre:{" "}{item.pet_name}.<br></br>-Nacimiento:{" "}
-                          {item.birth_date}.<br></br>-Veterinario:{" "}
-                          {item.veterinary_name}<br></br>.
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+      {/* {showInfo === true && ( */}
+      <div className="main-body">
+        <div className="col-md-12 mb-3 d-flex flex-row ">
+          <div className="card m-2 col-md-6">
+            <div className="card-body">
+              <div className="d-flex  flex-row justify-content-center align-items-center text-left">
+                <img
+                  src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                  alt="Admin"
+                  className="rounded-circle"
+                  width="150"
+                />
+                <div>
+                  <h4>{authState.owner_name}</h4>
+                  <h6>{authState.email}</h6>
+                  <h6>{authState.phone}</h6>
+                  <button
+                    className="btn btn-outline-primary"
+                    onClick={() => goBack()}
+                  >
+                    Volver
+                  </button>
+                  <button
+                    className="btn btn-outline-primary"
+                    onClick={() => logOut()}
+                  >
+                    Salir
+                  </button>
                 </div>
               </div>
             </div>
           </div>
+          <div className="card m-2 col-md-6">
+            <div className="card-body ">
+              <form className="revForm">
+                <div>
+                  <label>Titulo:</label>{" "}
+                  <input
+                    id="revTitle"
+                    type="text"
+                    value={revTitle}
+                    onChange={(e) => inputHandlerRev(e)}
+                  ></input>
+                </div>
 
-          <div className="card-body">
+                <div>
+                  <label>Reseña:</label>{" "}
+                  <textarea
+                    id="revContent"
+                    type="text"
+                    value={revContent}
+                    onChange={(e) => inputHandlerRev(e)}
+                  ></textarea>
+                </div>
+                <div>
+                  <button onClick={() => getReviewData()}>Enviar Reseña</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        {/* <div className="card-body">
             <div className="card mb-3">
               <h6 className="boxTitle">Agendar Visita</h6>
               <div className="card-body">
@@ -217,11 +228,11 @@ function OwnerPrivateProfile() {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      )}
+          </div> */}
+      </div>
+      {/* )} */}
     </div>
   );
 }
 
-export default OwnerPrivateProfile;
+export default Review;

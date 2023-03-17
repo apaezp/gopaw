@@ -18,6 +18,7 @@ import ContactPage from "./components/pages/ContactPage";
 import ContactInfo from "./components/pages/ContactInfo";
 import ContactHelp from "./components/pages/ContactHelp";
 import Appointment from "./components/pages/OwnerProfile/Appointment"
+import Review from "./components/pages/OwnerProfile/Review"
 
 function App() {
   return (
@@ -36,6 +37,8 @@ function App() {
             <Route path="/ContactInfo" element={<ContactInfo />} />
             <Route path="/ContactHelp" element={<ContactHelp />} />
             <Route path="/Appointment" element={<Appointment />} />
+            <Route path="/Review/:id" element={<Review />} />
+
             <Route path="pages/VetProfile/VetHome" element={<VetHome />} />
           
             <Route

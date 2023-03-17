@@ -8,13 +8,7 @@ const TopVetReviews = () => {
   const [vetInfo, setVetInfo] = useState([]);
   const [reviews, setReviews] = useState([]);
 
-  const { 
-    id, 
-    veterinary_name, 
-    phone, 
-    image, 
-    review: { title, date, content } = {}
-  } = vetInfo[index] || {};
+  const { id, veterinary_name, phone, review: { title, date, content } = {}} = vetInfo[index] || {};
   
 
   const getRandomIntInclusive = (min, max) => {
@@ -34,26 +28,32 @@ const TopVetReviews = () => {
   const filteredReviews = reviews.filter((review) => review.veterinary_id === vetInfo[index].id);
   const reviewContent = filteredReviews.length > 0 ? filteredReviews[0].content : '';
 
-  const viewProfile = async () => {
+
+  const getReviewData = async () => {
+    const urlServer = "https://backendgopaw-production.up.railway.app";
+    let endpoint = `/reviews`;
+    const response =  await axios.get(urlServer + endpoint);
+
+    const getReviews = response.data
+    setReviews(getReviews);
+   
+  }
+   console.log(reviews)
+
+
+  const getVets = async () => {
     const urlServer = "https://backendgopaw-production.up.railway.app";
     let endpoint = `/veterinarys`;
-  
-    try {
-      const { data: vetData } = await axios.get(urlServer + endpoint);
-      setVetInfo(vetData);
-  
-      endpoint = `/reviews`;
-      const { data: reviewsData } = await axios.get(urlServer + endpoint);
-      setReviews(reviewsData);
-      console.log(reviewsData)
-    } catch ({ response: { data: message } }) {
-      alert(message + " 🙁");
-      console.log(message);
-    }    
-  };  
+    const vets = await axios.get(urlServer + endpoint);
+    const getVets = vets.data
+       setVetInfo(getVets);
+       
+    };
+     console.log(vetInfo)
   
   useEffect(() => {
-    viewProfile();
+    getVets()
+    getReviewData()
   }, []); 
 
   return (
@@ -62,7 +62,7 @@ const TopVetReviews = () => {
         <h1>Reviews de Veterinarios</h1>
       </div>
       <div className="img-container">
-        <img src={image || 'https://via.placeholder.com/150'} alt={id} className="person-img" />
+        {/* <img src={image || 'https://via.placeholder.com/150'} alt={id} className="person-img" /> */}
         <span className="quote-icon">
           <FaQuoteRight />
         </span>
