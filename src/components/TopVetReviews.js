@@ -28,6 +28,9 @@ const TopVetReviews = () => {
   };
 
   const filterReviews = () => {
+    if (!reviews || !reviews.length || !vetInfo || !vetInfo.length || !vetInfo[index]) {
+      return;
+    }
     const filteredReviews = reviews.filter(
       (item) => item.veterinary_id === vetInfo[index].id
     );
@@ -37,6 +40,8 @@ const TopVetReviews = () => {
       setReviewContent(content);
     }
   };
+  
+  
 
   const getReviewData = async () => {
     const urlServer = "https://backendgopaw-production.up.railway.app";
