@@ -5,13 +5,13 @@ import "./TopVetReviews.css";
 import axios from "axios";
 
 const TopVetReviews = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [index, setIndex] = useState(0);
   const [vetInfo, setVetInfo] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [filtered, setFiltered] = useState([]);
+  const [reviewContent, setReviewContent] = useState("");
   const { veterinary_name, phone } = vetInfo[index] || {};
-  const reviewContent = filtered.length ? filtered[0].content : "";
 
   const getRandomIntInclusive = (min, max) => {
     min = Math.ceil(min);
@@ -25,11 +25,6 @@ const TopVetReviews = () => {
       randomIndex = index - 1;
     }
     setIndex(randomIndex);
-    const filteredReviews = reviews.filter(
-      (item) => item.veterinary_id === vetInfo[index].id
-    );
-
-  
   };
 
   const filterReviews = () => {
@@ -37,8 +32,11 @@ const TopVetReviews = () => {
       (item) => item.veterinary_id === vetInfo[index].id
     );
     setFiltered(filteredReviews);
-    getRandomPerson();
-  }
+    if (filteredReviews.length) {
+      const { content } = filteredReviews[0];
+      setReviewContent(content);
+    }
+  };
 
   const getReviewData = async () => {
     const urlServer = "https://backendgopaw-production.up.railway.app";
@@ -64,8 +62,11 @@ const TopVetReviews = () => {
   useEffect(() => {
     getVets();
     getReviewData();
-    filterReviews()
   }, []);
+
+  useEffect(() => {
+    filterReviews();
+  }, [index, reviews]);
 
   return (
     <article className="review">
@@ -90,10 +91,11 @@ const TopVetReviews = () => {
         </button>
       </div>
       <button className="random-btn" onClick={() => goVets()}>
-        Más Reviews
+        Ver más sobre nuestros veterinarios
       </button>
     </article>
   );
 };
 
 export default TopVetReviews;
+

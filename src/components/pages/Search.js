@@ -1,48 +1,32 @@
 import React, { useState, useEffect } from "react";
 import { GiMagnifyingGlass } from "react-icons/gi";
 import Modal from "react-modal";
-import Calendar from "react-calendar";
 import axios from "axios";
 import "./Search.css";
 
-// const customStyles = {
-//   content: {
-//     top: '50%',
-//     left: '50%',
-//     right: 'auto',
-//     bottom: 'auto',
-//     marginRight: '-50%',
-//     transform: 'translate(-50%, -50%)',
-//   },
-// };
-
-// Modal.setAppElement('Example Modal');
 
 function Search() {
   const [vetName, setVetName] = useState();
   const [vetList, setVetList] = useState([]);
-  const [button, setButton] = useState("false");
-  const [vetInfo, setVetInfo] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [searchResult, setSearchResult] = useState([]);
   const [modalIsOpen, setIsOpen] = useState(false);
 
   const inputHandler = (e) => {
     const { id, value } = e.target;
-    if (id == "vetName") {
+    if (id === "vetName") {
       const toLower = value.toLowerCase();
       setVetName(toLower);
     }
   };
-  // console.log(vetName);
+
 
   function openModal() {
     setIsOpen(true);
   }
 
   function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    // subtitle.style.color = '#f00';
+  
   }
 
   function closeModal() {
@@ -59,7 +43,7 @@ function Search() {
       alert("Bad response" + error);
     }
   };
-  // console.log(vetList);
+  
 
   useEffect(() => {
     getVeterinarys();
@@ -81,7 +65,7 @@ function Search() {
     setSearchResult(searchResults);
     setVetName("");
   };
-  // console.log(searchResult);
+ 
 
   const handleReviewSearch = async (id) => {
     const urlServer = "https://backendgopaw-production.up.railway.app";
@@ -95,16 +79,6 @@ function Search() {
       console.log(message);
     }
   };
-
-  // const searchResult = vetList.find(({ veterinary_name }) =>
-  //   veterinary_name.toLowerCase().includes(vetName.toLowerCase())
-  // );
-
-  // const filteredReviews = reviews.filter(
-  //   (review) => review.veterinary_id === vetInfo[index].id
-  // );
-  // const reviewContent =
-  //   filteredReviews.length > 0 ? filteredReviews[0].content : "";
 
   return (
     <div className="search-card-container">

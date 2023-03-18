@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../GlobalStates";
@@ -9,7 +9,7 @@ import axios from "axios";
 function OwnerPrivateProfile() {
   const navigate = useNavigate();
   const [authState, setAuthState] = (useContext(AuthContext));
-  const {account_type, id, token } = authState;
+  const { id, token } = authState;
 
   const [showInfo, setShowInfo] = useState(false);
   const arrayTypes = ["Perro", "Gato", "Exotico", "Ave"];
