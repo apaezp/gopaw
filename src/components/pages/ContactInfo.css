@@ -1,35 +1,53 @@
 .contact-info-container {
-    margin-top: 50px;
-    height: 100%;
-    width: 100%;
-    font-family: "Cinzel", serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f7f7f7;
+  padding: 50px 0;
+  font-family: 'Cinzel', serif;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 500px;
+  margin-top: 30px;
+  text-align: center;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.contact-item svg {
+  font-size: 25px;
+  margin-right: 10px;
+  color: #007bff;
+}
+
+.contact-item p {
+  font-size: 18px;
+  color: #333;
+  margin: 0;
+}
+
+.contact-text {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.contact-info p {
+  font-size: 16px;
+  color: #555;
+  margin-top: 30px;
+}
+
+@media screen and (max-width: 768px) {
+  .contact-info-container {
+    padding: 50px 20px;
   }
-  
-  .contact-info-container h2 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 30px;
-  }
-  .contact-info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 30px;
-  }
-  
-  .contact-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-    font-size: 1.2rem;
-  }
-  
-  .contact-item i {
-    margin-right: 10px;
-    font-size: 1.5rem;
-  }
-  
+}

@@ -202,7 +202,7 @@ console.log(data)
             className="btnSignUp"
             onClick={() => validatePassword()}
           >
-            Registrarse.
+            Registrarse
           </button>
           <p></p>
           <button
