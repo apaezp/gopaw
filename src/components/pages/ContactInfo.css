@@ -5,6 +5,7 @@
   background-color: #f7f7f7;
   padding: 50px 0;
   font-family: 'Cinzel', serif;
+  justify-content: center;
 }
 
 .contact-info {
@@ -19,13 +20,15 @@
 .contact-item {
   display: flex;
   align-items: center;
+  justify-content: center; 
   margin: 20px 0;
 }
 
-.contact-item svg {
+.contact-item svg {  
   font-size: 25px;
   margin-right: 10px;
   color: #007bff;
+  margin-top: 20px;  
 }
 
 .contact-item p {
