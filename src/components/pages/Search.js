@@ -151,7 +151,7 @@ function Search() {
                 openModal();
               }}
             >
-              See reviews
+              Ver reviews
             </button>
 
             <Modal
