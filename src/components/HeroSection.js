@@ -24,7 +24,7 @@ function HeroSection() {
   return (
     <div className="hero-container"> 
     <video src= {Video} autoPlay loop muted />                      
-          <h1>“¡Hola {name} a nuestra página de contacto para veterinarios y dueños de mascotas!”</h1>
+          <h1>“¡Bienvenido {name} a nuestra página de contacto para veterinarios y dueños de mascotas!”</h1>
           <p> Esto es GoPaw!</p>
           <div className="hero-btns">
           <Link to='/ContactPage'>

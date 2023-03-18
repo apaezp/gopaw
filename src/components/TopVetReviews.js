@@ -74,7 +74,7 @@ const TopVetReviews = () => {
         <h1 className="title">Reviews de Veterinarios</h1>
       </div>
       <div className="img-container">
-        {/* <img src={image || 'https://via.placeholder.com/150'} alt={id} className="person-img" /> */}
+        <img src={'https://thumbs.dreamstime.com/b/perro-veterinario-18384165.jpg'} alt="veterinary" className="person-img" /> 
         <span className="quote-icon">
           <FaQuoteRight />
         </span>
