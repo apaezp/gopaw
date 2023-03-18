@@ -88,6 +88,7 @@ function OwnerPrivateProfile() {
       )
       .then(() => {
         alert("Registro de mascota exitoso");
+        getPetList()
       })
       .catch((error) => {
         alert(error);

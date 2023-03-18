@@ -157,7 +157,7 @@ export const ModificarPerfil = () => {
             />
           </div>
         </div> */}
-        <div className="form-group row">
+        {/* <div className="form-group row">
           <label className="col-lg-3 col-form-label form-control-label">
             Cambiar Foto
           </label>
@@ -169,7 +169,7 @@ export const ModificarPerfil = () => {
               name="image"
             />
           </div>
-        </div>
+        </div> */}
 
         {/* <div className="form-group row">
           <label className="col-lg-3 col-form-label form-control-label">
